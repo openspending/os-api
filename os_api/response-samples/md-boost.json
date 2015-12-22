@@ -1,0 +1,23 @@
+{
+  "description": "Moldova Expenditure composed by the World Bank BOOST project.", 
+  "default_time": null, 
+  "html_url": "https://openspending.org/md-boost", 
+  "currency": "USD", 
+  "serp_title": null, 
+  "schema_version": null, 
+  "badges": [], 
+  "category": "other", 
+  "name": "md-boost", 
+  "serp_teaser": null, 
+  "label": "Moldova BOOST", 
+  "languages": [
+    "en"
+  ], 
+  "territories": [
+    "MD"
+  ], 
+  "timestamps": {
+    "last_modified": "2014-02-21T02:24:34.544275", 
+    "created": "2012-05-12T16:38:17.106879"
+  }
+}

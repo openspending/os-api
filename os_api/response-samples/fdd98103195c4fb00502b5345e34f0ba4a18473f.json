@@ -1,0 +1,91 @@
+{
+  "func2": {
+    "taxonomy": "func2", 
+    "label": "Preschool education", 
+    "id": 98, 
+    "html_url": "https://openspending.org/md-boost/func2/06-01", 
+    "name": "06-01"
+  }, 
+  "func1": {
+    "taxonomy": "func1", 
+    "label": "Education", 
+    "id": 8, 
+    "html_url": "https://openspending.org/md-boost/func1/06", 
+    "name": "06"
+  }, 
+  "exp_type": "Capital", 
+  "admin6": {
+    "taxonomy": "admin6", 
+    "label": "Preschool facilities", 
+    "id": 189, 
+    "html_url": "https://openspending.org/md-boost/admin6/051", 
+    "name": "051"
+  }, 
+  "amount": 3000.0, 
+  "html_url": "https://openspending.org/md-boost/entries/fdd98103195c4fb00502b5345e34f0ba4a18473f", 
+  "admin1": {
+    "taxonomy": "admin1", 
+    "label": "Local", 
+    "id": 2, 
+    "html_url": "https://openspending.org/md-boost/admin1/local", 
+    "name": "local"
+  }, 
+  "source": "Base component", 
+  "admin3": {
+    "taxonomy": "admin3", 
+    "label": "Unknown Admin 3", 
+    "id": 771, 
+    "html_url": "https://openspending.org/md-boost/admin3/xx", 
+    "name": "xx"
+  }, 
+  "admin2": {
+    "taxonomy": "admin2", 
+    "label": "District Council Telenesti", 
+    "id": 167, 
+    "html_url": "https://openspending.org/md-boost/admin2/093", 
+    "name": "093"
+  }, 
+  "admin5": {
+    "taxonomy": "admin5", 
+    "label": "Kindergarten no. 3 Telenesti", 
+    "id": 8616, 
+    "html_url": "https://openspending.org/md-boost/admin5/6987", 
+    "name": "6987"
+  }, 
+  "admin4": {
+    "taxonomy": "admin4", 
+    "label": "Mayoralty of the city of Telenesti", 
+    "id": 872, 
+    "html_url": "https://openspending.org/md-boost/admin4/6981", 
+    "name": "6981"
+  }, 
+  "time": {
+    "week": "00", 
+    "name": "2005-01-01", 
+    "taxonomy": "time", 
+    "label": "01. January 2005", 
+    "html_url": "https://openspending.org/md-boost/time/2005-01-01", 
+    "month": "01", 
+    "yearmonth": "200501", 
+    "year": "2005", 
+    "quarter": "0", 
+    "id": 1, 
+    "day": "01"
+  }, 
+  "econ1": {
+    "taxonomy": "econ1", 
+    "label": "Purchase of fixed assets", 
+    "id": 9, 
+    "html_url": "https://openspending.org/md-boost/econ1/242", 
+    "name": "242"
+  }, 
+  "econ2": {
+    "taxonomy": "econ2", 
+    "label": "Purchase of fixed assets", 
+    "id": 24, 
+    "html_url": "https://openspending.org/md-boost/econ2/242-00", 
+    "name": "242-00"
+  }, 
+  "type": "adjusted", 
+  "id": "fdd98103195c4fb00502b5345e34f0ba4a18473f"
+}
