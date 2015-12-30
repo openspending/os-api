@@ -1,15 +1,8 @@
 import json
 
-from babbage import BabbageException, QueryException
-from flask import Blueprint, request, current_app, jsonify
-
-from babbage.query.cuts import Cuts
-
-
-class SafeCuts(Cuts):
-
-    def cut(self, ast):
-        self.results.append((ast[0], ast[1], ast[2]))
+from babbage import BabbageException
+from flask import Blueprint, request, current_app
+from flask.ext.jsonpify import jsonify
 
 backwardAPI = Blueprint('BackwardAPI', __name__)
 
@@ -24,6 +17,20 @@ def configure_backward_api(app, manager):
 
 
 def canonize_dimension(model, dim, val):
+    """
+    Convert old-style dimension name to one understandable by babbage.
+    Check the datatype of the dimension and cast the given value to the correct type.
+
+    Examples:
+        year -> year
+        time.year -> year
+        functional-classification.func1_label -> func1_code.func1_label
+
+    :param model: the babbage model as Python object
+    :param dim: the dimension to be converted (as string)
+    :param val: the provided value
+    :return: tuple with new dimension name and value
+    """
     ret_dim = dim
     ret_val = val
     ret_attr = None
@@ -63,6 +70,15 @@ def canonize_dimension(model, dim, val):
 
 
 def get_arg_with_default(param, default=None, conv=None):
+    """
+    Get from the request's parameters a specific argument.
+    If the argument doesn't appear in the request or the value is 'undefined', return the default.
+    Use conv callable to attempt a conversion of the resulting value. If the conversion fails, the default is returned.
+    :param param: which parameter to fetch
+    :param default: default value to use in case of failures
+    :param conv: callable to be used to convert the value, may be None in case no conversion is necessary
+    :return: fetched value or default
+    """
     arg = request.args.get(param,default)
     if arg=='undefined':
         arg = default
@@ -73,42 +89,58 @@ def get_arg_with_default(param, default=None, conv=None):
             arg = default
     return arg
 
+
 @backwardAPI.route('/aggregate')
 def backward_compat_aggregate_api():
+    """ Implement the old OS aggregate API over Babbage """
+
+    # Fetch general parameters from the request
     dataset = request.args.get('dataset')
     measure_name = get_arg_with_default('measure', 'amount')
     pagesize = request.args.get('pagesize', 10000, int)
     page = request.args.get('page', 1, int)
 
+    # Check if the dataset even exists
     cm = current_app.extensions['cube_manager']
     if cm.has_cube(dataset):
-        model = cm.get_cube_model(dataset)
-        measure = model['measures'][measure_name]
         cube = cm.get_cube(dataset)
+        model = cm.get_cube_model(dataset)
+
+        # It there's a dataset, fetch the aggregation params:
+
+        # requested measure
+        measure = model['measures'][measure_name]
+
+        # cuts
         cuts = get_arg_with_default('cut')
         if cuts is not None:
-            try:
-                cuts = SafeCuts(cube).parse(cuts)
-            except BabbageException as e:
-                return jsonify({'errors':str(e)})
+            # Cuts for the old API had a simpler syntax
+            cuts = cuts.split('|')
+            cuts = [c.split(':') for c in cuts]
 
+            # Rename field names from old API to ones that Babbage understands
             canonized_cuts = []
-            for k,_,v in cuts:
+            for k, v in cuts:
                 canonized_cuts.append(canonize_dimension(model, k, v))
-            cuts = '|'.join( '%s:%s' % (k,json.dumps(v)) for k,v in canonized_cuts )
 
+            # Rebuild cuts argument
+            cuts = '|'.join('%s:%s' % (k,json.dumps(v)) for k,v in canonized_cuts)
+
+        # drilldowns
         drilldowns = get_arg_with_default('drilldown')
+
+        # result ordering
         order = get_arg_with_default('order', measure_name+'.sum:desc')
 
-        print cuts, drilldowns
+        # Call babbage and watch out for errors
         try:
             aggregate = cube.aggregate(cuts=cuts, drilldowns=drilldowns,page_size=pagesize,page=page,order=order)
         except BabbageException as e:
-            return jsonify({'errors':str(e)})
+            return jsonify({'errors': str(e)})
 
+        # Process the results to build a backward-compatible response
 
-        # aggregate['cells'].sort(key=lambda x:x[measure_name+'.sum'], reverse=True)
-
+        # General parameters
         count = aggregate['summary']['_count']
         pagesize = aggregate['page_size']
         numcells = len(aggregate['cells'])
@@ -128,6 +160,8 @@ def backward_compat_aggregate_api():
                 ])
              ),
         ])
+
+        # Now process the cell data
         ret['drilldown']=[]
         for cell in aggregate['cells']:
             drilldown = {}
@@ -144,8 +178,19 @@ def backward_compat_aggregate_api():
                     parts = k.split('.')
                     drilldown.setdefault(parts[0],{})['.'.join(parts[1:])] = v
                     if parts[1] == 'name':
-                        drilldown[parts[0]]['html_url'] =\
-                         'https://openspending.org/%s/%s/%s' % (dataset,parts[0],v)
+                        html_url = 'https://openspending.org/%s/%s/%s' % (dataset,parts[0],v)
+                        drilldown[parts[0]]['html_url'] = html_url
+                        drilldown[parts[0]]['id'] = hash(html_url) % 1000 + 1000
+                        # HACK until we get the correct taxonimy:
+                        T = {
+                            'cofog1':'cofog-1',
+                            'cofog2':'cofog-2',
+                            'cofog3':'cofog-3',
+                            'region':'cra-region',
+                        }
+                        if parts[0] in T:
+                            drilldown[parts[0]]['taxonomy'] = T[parts[0]]
+                        # END-HACK
 
             ret['drilldown'].append(drilldown)
 

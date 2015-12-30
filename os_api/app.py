@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
+from flask.ext.cors import CORS
 
 from babbage.api import configure_api
 from babbage_fiscal import FDPLoaderBlueprint, ModelRegistry
@@ -18,6 +19,7 @@ def configure_app(app):
     app.register_blueprint(FDPLoaderBlueprint, url_prefix='/api/3/loader')
     app.register_blueprint(configure_backward_api(app, manager), url_prefix='/api/2')
     app.extensions['model_registry'] = ModelRegistry(get_engine())
+    CORS(app)
 
 configure_app(app)
 
