@@ -1,3 +1,4 @@
+import os
 import json
 import six
 
@@ -7,6 +8,7 @@ from flask.ext.jsonpify import jsonify
 
 backwardAPI = Blueprint('BackwardAPI', __name__)
 
+TAXONOMIES = json.load(open(os.path.join(os.path.dirname(__file__), 'taxonomies.json')))
 
 def configure_backward_api(app, manager):
     """ Configure the current Flask app with an instance of ``CubeManager`` that
@@ -44,7 +46,6 @@ def canonize_dimension(model, dim, val):
                 break
             elif '.' in dim:
                 parts = dim.split('.')
-                print(parts,name,dimension)
                 if parts[1] == name:
                     ret_dim = name
                     break
@@ -180,25 +181,9 @@ def backward_compat_aggregate_api():
                     parts = k.split('.')
                     if parts[0] not in drilldown:
                         drilldown[parts[0]] = {}
-                        # HACK until we get the correct taxonomy:
-                        T = {
-                            'cofog1':'cofog-1',
-                            'cofog2':'cofog-2',
-                            'cofog3':'cofog-3',
-                            'region':'cra-region',
-                            'from':'from',
-                            'to':'to',
-                            'hmt1':'cra-hmt-level1',
-                            'hmt2':'cra-hmt-level2',
-                            'time':'time',
-                            'pog':'cra-pog',
-                            'cap_or_cur':'cra-cap_or_cur',
-                            'cg_lg_or_pc':'cra-cg_lg_or_pc',
-
-                        }
-                        if parts[0] in T:
-                            drilldown[parts[0]]['taxonomy'] = T[parts[0]]
-                            # END-HACK
+                        taxonomy_rules = TAXONOMIES.get(dataset,{})
+                        taxonomy = taxonomy_rules.get(parts[0],parts[0])
+                        drilldown[parts[0]]['taxonomy'] = taxonomy
 
                     drilldown[parts[0]]['.'.join(parts[1:])] = v
                     if parts[1] == 'name':

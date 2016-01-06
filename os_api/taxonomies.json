@@ -1,0 +1,110 @@
+{
+  "afd": {
+    "aim": "sector"
+  },
+  "uy-credito-presupuestal": {
+    "area_programatica": "area-programatica"
+  },
+  "city-of-redacre-spending": {
+    "barsacct": "unknown",
+    "category": "unknown",
+    "object": "unknown",
+    "priority": "unknown",
+    "description": "unknown",
+    "from": "unknown",
+    "to": "unknown"
+  },
+  "city-of-springfield-budget": {
+    "deptgroup": "unknown",
+    "from": "unknown",
+    "to": "unknown"
+  },
+  "city-of-whiteacre-spending": {
+    "deptgroup": "unknown",
+    "accounttype": "unknown",
+    "from": "unknown",
+    "to": "unknown",
+    "object": "unknown"
+  },
+  "budget-city-huettenberg": {
+    "hauptproduktbereich": "lkgiessen-level-1",
+    "produkt": "lkgiessen-level-4",
+    "produktgruppe": "lkgiessen-level-3",
+    "produktbereich": "lkgiessen-level-2"
+  },
+  "budget-city-lich": {
+    "produkt": "lich-level-3",
+    "produktgruppe": "lich-level-2",
+    "produktbereich": "lich-level-1"
+  },
+  "budget_city_giessen": {
+    "amt": "giessen-level-3",
+    "produkt": "giessen-level-2",
+    "produktbereich": "giessen-level-1"
+  },
+  "budget_city_linden": {
+    "abteilung": "linden-level-2",
+    "amt": "linden-level-3",
+    "bereich": "linden-level-1"
+  },
+  "budget_county_giessen": {
+    "produkt": "lkgiessen-level-3",
+    "produktgruppe": "lkgiessen-level-2",
+    "produktbereich": "lkgiessen-level-1"
+  },
+  "frankfurt-budget": {
+    "haushaltsstelle": "ffm-level-3",
+    "produktgruppe": "ffm-level-2",
+    "produktbereich": "ffm-level-1"
+  },
+  "iati": {
+    "tied_status": "iati-tied-status",
+    "identifier": "iati-identifier",
+    "recipient_region": "iati-region",
+    "sector": "iati-sector",
+    "finance_type": "iati-finance-type",
+    "transaction_type": "iati-tx-type",
+    "status": "iati-status",
+    "original_currency": "iati-currency",
+    "flow_type": "iati-flow-type",
+    "aid_type": "iati-aid-type",
+    "recipient_country": "iati-country"
+  },
+  "it-regional-accounts": {
+    "function": "itb-function"
+  },
+  "mkk_budget": {
+    "fachbereich": "mkk-level-2",
+    "konto": "mkk-level-4",
+    "produkt": "mkk-level-3",
+    "dezernat": "mkk-level-1"
+  },
+  "ugandabudget": {
+    "sector_objective": "uganda.swg.sector_objective",
+    "swg": "uganda.swg",
+    "subsector": "uganda.sector.subsector",
+    "peap_area": "uganda.peap.objective.area",
+    "gou_vote": "uganda.gou_vote",
+    "spending_source_type": "uganda.spending_source_type",
+    "programme": "uganda.programme",
+    "peap_pillar": "uganda.peap",
+    "sector": "uganda.sector",
+    "peap_objective": "uganda.peap.objective"
+  },
+  "uk-barnet-budget": {
+    "level1": "barnet-level-1",
+    "level2": "barnet-level-2",
+    "level3": "barnet-level-3"
+  },
+  "ukgov-finances-cra": {
+    "region": "cra-region",
+    "pog": "cra-pog",
+    "hmt1": "cra-hmt-level1",
+    "hmt2": "cra-hmt-level2",
+    "cofog1": "cofog-1",
+    "cofog2": "cofog-2",
+    "cofog3": "cofog-3",
+    "cg_lg_or_pc": "cra-cg_lg_or_pc",
+    "cap_or_cur": "cra-cap_or_cur"
+  }
+}
