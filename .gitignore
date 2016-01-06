@@ -2,6 +2,5 @@
 *pyc
 .idea
 *iml
-
 celerydb.sqlite
 gunicorn.log

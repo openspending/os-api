@@ -1,4 +1,5 @@
 import json
+import six
 
 from babbage import BabbageException
 from flask import Blueprint, request, current_app
@@ -43,10 +44,11 @@ def canonize_dimension(model, dim, val):
                 break
             elif '.' in dim:
                 parts = dim.split('.')
+                print(parts,name,dimension)
                 if parts[1] == name:
                     ret_dim = name
                     break
-                elif parts[1] in dimension['attributes'] and parts[0] == dimension.get('group'):
+                elif parts[1] in dimension['attributes'] and parts[0] == dimension.get('hierarchy'):
                     ret_dim = name
                     ret_attr = parts[1]
                     break
@@ -60,7 +62,7 @@ def canonize_dimension(model, dim, val):
             ret_attr = None
     datatype = attribute['datatype']
     if datatype == 'string':
-        ret_val = unicode(ret_val)
+        ret_val = str(ret_val)
     elif datatype == 'integer':
         ret_val = int(ret_val)
     if ret_attr is None:
@@ -104,7 +106,7 @@ def backward_compat_aggregate_api():
     cm = current_app.extensions['cube_manager']
     if cm.has_cube(dataset):
         cube = cm.get_cube(dataset)
-        model = cm.get_cube_model(dataset)
+        model = cube.model.to_dict()
 
         # It there's a dataset, fetch the aggregation params:
 
@@ -116,7 +118,7 @@ def backward_compat_aggregate_api():
         if cuts is not None:
             # Cuts for the old API had a simpler syntax
             cuts = cuts.split('|')
-            cuts = [c.split(':') for c in cuts]
+            cuts = [c.split(':') for c in cuts if ':' in c]
 
             # Rename field names from old API to ones that Babbage understands
             canonized_cuts = []
@@ -136,7 +138,7 @@ def backward_compat_aggregate_api():
         try:
             aggregate = cube.aggregate(cuts=cuts, drilldowns=drilldowns,page_size=pagesize,page=page,order=order)
         except BabbageException as e:
-            return jsonify({'errors': str(e)})
+            return jsonify({'errors': [str(e)]})
 
         # Process the results to build a backward-compatible response
 
@@ -173,26 +175,40 @@ def backward_compat_aggregate_api():
                 elif '.' in k:
                     if type(v) is bool:
                         v = json.dumps(v)
-                    elif type(v) in (int,long):
+                    elif type(v) in six.integer_types:
                         v = str(v)
                     parts = k.split('.')
-                    drilldown.setdefault(parts[0],{})['.'.join(parts[1:])] = v
-                    if parts[1] == 'name':
-                        html_url = 'https://openspending.org/%s/%s/%s' % (dataset,parts[0],v)
-                        drilldown[parts[0]]['html_url'] = html_url
-                        drilldown[parts[0]]['id'] = hash(html_url) % 1000 + 1000
-                        # HACK until we get the correct taxonimy:
+                    if parts[0] not in drilldown:
+                        drilldown[parts[0]] = {}
+                        # HACK until we get the correct taxonomy:
                         T = {
                             'cofog1':'cofog-1',
                             'cofog2':'cofog-2',
                             'cofog3':'cofog-3',
                             'region':'cra-region',
+                            'from':'from',
+                            'to':'to',
+                            'hmt1':'cra-hmt-level1',
+                            'hmt2':'cra-hmt-level2',
+                            'time':'time',
+                            'pog':'cra-pog',
+                            'cap_or_cur':'cra-cap_or_cur',
+                            'cg_lg_or_pc':'cra-cg_lg_or_pc',
+
                         }
                         if parts[0] in T:
                             drilldown[parts[0]]['taxonomy'] = T[parts[0]]
-                        # END-HACK
+                            # END-HACK
+
+                    drilldown[parts[0]]['.'.join(parts[1:])] = v
+                    if parts[1] == 'name':
+                        html_url = 'https://openspending.org/%s/%s/%s' % (dataset,parts[0],v)
+                        drilldown[parts[0]]['html_url'] = html_url
+                        drilldown[parts[0]]['id'] = hash(html_url) % 1000 + 1000
+
+
 
             ret['drilldown'].append(drilldown)
 
         return jsonify(ret)
-    return jsonify({'errors':'no such dataset'})
+    return jsonify({'errors':['no dataset with name "%s"' % dataset]})
