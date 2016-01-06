@@ -46,10 +46,7 @@ def canonize_dimension(model, dim, val):
                 break
             elif '.' in dim:
                 parts = dim.split('.')
-                if parts[1] == name:
-                    ret_dim = name
-                    break
-                elif parts[1] in dimension['attributes'] and parts[0] == dimension.get('hierarchy'):
+                if parts[1] in dimension['attributes'] and parts[0] == dimension.get('hierarchy'):
                     ret_dim = name
                     ret_attr = parts[1]
                     break
@@ -72,7 +69,7 @@ def canonize_dimension(model, dim, val):
         return ret_dim+'.'+ret_attr, ret_val
 
 
-def get_arg_with_default(param, default=None, conv=None):
+def get_arg_with_default(param, default=None):
     """
     Get from the request's parameters a specific argument.
     If the argument doesn't appear in the request or the value is 'undefined', return the default.
@@ -83,13 +80,8 @@ def get_arg_with_default(param, default=None, conv=None):
     :return: fetched value or default
     """
     arg = request.args.get(param,default)
-    if arg=='undefined':
+    if arg == 'undefined':
         arg = default
-    if conv is not None:
-        try:
-            arg = conv(arg)
-        except ValueError:
-            arg = default
     return arg
 
 

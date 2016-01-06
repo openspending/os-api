@@ -92,9 +92,16 @@ class TestAPI(FlaskTestCase):
         for path in responses.namelist():
             canned_response = json.loads(responses.read(path).decode('utf8'))
             actual_response = self.client.get(path).json
-            errors = TestAPI.compare_objects(canned_response,actual_response)
+            errors = TestAPI.compare_objects(canned_response, actual_response)
             assert len(errors) == 0
 
+    def test_loader_and_backward_compatibility_api_errors(self):
+        responses = zipfile.ZipFile('tests/backward_mismatch_responses.zip','r')
+        for path in responses.namelist():
+            canned_response = json.loads(responses.read(path).decode('utf8'))
+            actual_response = self.client.get(path).json
+            errors = TestAPI.compare_objects(canned_response, actual_response)
+            assert len(errors) > 0
 
 
 
