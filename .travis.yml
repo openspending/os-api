@@ -18,7 +18,7 @@ install:
     - python -m pip install git+git://github.com/okfn/datapackage-py.git
     - python -m pip install git+git://github.com/openspending/babbage.fiscal-data-package.git
     - python -m pip install -e .
-    - python -m pip install -U git+git://github.com/openspending/babbage.git@add-group-for-dimensions
+    - python -m pip install -U git+git://github.com/openspending/babbage.git
 before_script:
     - psql -c 'create database os;' -U postgres
     - python -m pytest --version
