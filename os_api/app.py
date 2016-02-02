@@ -1,4 +1,5 @@
 import os
+import hashlib
 try:
     from urllib.parse import urlparse
 except ImportError:
@@ -46,7 +47,7 @@ def return_cached():
     if cache is not None \
             and not o.path.startswith(url_for('FDPLoader.load'))\
             and not o.path.startswith(url_for('babbage_api.cubes')):
-        key = o.path+'?'+o.query
+        key = hashlib.md5((o.path+'?'+o.query).encode('utf8')).hexdigest()
         response = cache.get(key)
         if response:
             response.from_cache = True
@@ -57,6 +58,6 @@ def return_cached():
 def cache_response(response):
     o = urlparse(request.url)
     if cache is not None and response.status_code == 200 and not hasattr(response, 'from_cache'):
-        key = o.path+'?'+o.query
+        key = hashlib.md5((o.path+'?'+o.query).encode('utf8')).hexdigest()
         cache.set(key, response, cache_timeout)
     return response
