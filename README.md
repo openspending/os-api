@@ -1,5 +1,6 @@
 # OpenSpending-Next API
 
+[![Gitter](https://img.shields.io/gitter/room/openspending/chat.svg)](https://gitter.im/openspending/chat)
 [![Build Status](https://travis-ci.org/openspending/os-api.svg?branch=master)](https://travis-ci.org/openspending/os-api)
 [![Coverage Status](https://coveralls.io/repos/openspending/os-api/badge.svg?branch=master&service=github)](https://coveralls.io/github/openspending/os-api?branch=master)
 
