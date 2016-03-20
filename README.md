@@ -10,4 +10,4 @@ An API to explorer the OpenSpending database.
 
 ## Quick start
 
-Clone the repo, install dependencies from npm, and run the server. See the [docs](http://docs.openspending.org/en/latest/developers/api/) for more information.
+Clone the repo, install dependencies from pypi, and run the server. See the [docs](http://docs.openspending.org/en/latest/developers/api/) for more information.
