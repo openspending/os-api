@@ -26,7 +26,7 @@ def create_app():
     app.register_blueprint(configure_loader_api(_connection_string), url_prefix='/api/3/loader')
     app.register_blueprint(configure_backward_api(app, manager), url_prefix='/api/2')
     app.register_blueprint(infoAPI, url_prefix='/api/3')
-    app.extensions['model_registry'] = ModelRegistry(get_engine())
+    app.extensions['model_registry'] = ModelRegistry()
     CORS(app)
     return app
 

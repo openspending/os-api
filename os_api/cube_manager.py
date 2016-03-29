@@ -5,7 +5,7 @@ class OSCubeManager(CubeManager):
 
     def __init__(self,engine):
         super(OSCubeManager, self).__init__(engine)
-        self.registry = ModelRegistry(engine)
+        self.registry = ModelRegistry()
 
     def list_cubes(self):
         """ List all available models in the DB """
