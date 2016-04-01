@@ -9,20 +9,37 @@ python:
 addons:
     postgresql: "9.4"
 
+services:
+    - elasticsearch
+
 env:
-    - OS_API_ENGINE=postgresql://postgres@/os
+    global:
+        - OS_API_ENGINE=postgresql://postgres@/os
+        - OS_ELASTICSEARCH_ADDRESS=localhost:9200
 install:
     - python -m pip install --upgrade pip
     - python -m pip install pytest flask-testing coverage coveralls
+    - python -m pip install git+git://github.com/frictionlessdata/jsontableschema-py.git
+    - python -m pip install git+git://github.com/frictionlessdata/jsontableschema-sql-py.git
     - python -m pip install git+git://github.com/okfn/tabulator-py.git
     - python -m pip install git+git://github.com/okfn/datapackage-py.git
+    - python -m pip install git+git://github.com/openspending/babbage.git
     - python -m pip install git+git://github.com/openspending/babbage.fiscal-data-package.git
     - python -m pip install -e .
+    - python -m pip install -U git+git://github.com/openspending/babbage.fiscal-data-package.git
     - python -m pip install -U git+git://github.com/openspending/babbage.git
+    - python -m pip install -U git+git://github.com/okfn/datapackage-py.git
+    - python -m pip install -U git+git://github.com/okfn/tabulator-py.git
+    - python -m pip install -U git+git://github.com/frictionlessdata/jsontableschema-py.git
+    - python -m pip install -U git+git://github.com/frictionlessdata/jsontableschema-sql-py.git
 before_script:
+    - sleep 10
     - psql -c 'create database os;' -U postgres
     - python -m pytest --version
 script:
     - python -m coverage run --source os_api -m pytest
 after_success:
     - coveralls
+notifications:
+  slack:
+    secure: XOKB7xGcgekspiAbsMxUbo7mnm09oN9PaipzSD2B6P2HyBP9RFCqsSBomqncLjvnypbINISa3npxdT8tZ7f4NgrZQBtIPcKgiuKbWBfecXtQylnnYc65QCfdM465MOJWzGCwUk8RP6PqcBz0yL0VDYlNKOxhle4QcCeaw86TXhzaSkTJOzWc/kdsVT6GQRE/ecR2sNDezmfvXA8Y8M60Jdkze/3U+ix2T8DgKyYISvds4IMPDz2X2QpjJzvB1i4onQLxrE+H93Djnf+b4Fyi5q4TJG74boKLqeddY3V83y3H2G5oSrEgqaSOWq/klSjkmTIPUsYmwRSU6CcW/J6BqK74lubuEfPYHwqwFYymyPeFHTBBnRtU9EsTR5/q+7TiNaDllIItm+5CAu29K5UoQQBqeX0uaEyPHwK5VfDson6Wl8KljDBjeZnQj9JRREG/rGm2YAKrmyx9QXImexqqGfXOt/AQGlSwjM5jU11O7411EdG+1eAzYIXqlfH8sZbnfF2t8D1YAIUmJLOg9coJbxv0d3592dGxROANe3ZuNRUkviGubs2IFmBp/XyZYej1tQIhWdyBB22JGz5ovbRIN8a9rSyi1czhcy6jv1UjQoerQWzrwMXSKZOA7dLTZN0HvyBdWysxL+GpB6dS55A/iWQsGK9jW18cF6z1g81kcUA=
