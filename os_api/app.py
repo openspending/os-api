@@ -1,5 +1,7 @@
+import sys
 import os
 import hashlib
+import logging
 try:
     from urllib.parse import urlparse
 except ImportError:
@@ -18,16 +20,30 @@ from .config import get_engine, _connection_string
 from .backward import configure_backward_api
 from .info_api import infoAPI
 
+import logging
+
+root = logging.getLogger()
+root.setLevel(logging.DEBUG)
+
+ch = logging.StreamHandler(sys.stderr)
+ch.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+root.addHandler(ch)
 
 def create_app():
+    logging.info('OS-API create_app')
     app = Flask('os_api')
+    logging.info('OS-API creating cube manager')
     manager = OSCubeManager(get_engine())
+    logging.info('OS-API configuring blueprints')
     app.register_blueprint(configure_babbage_api(app, manager), url_prefix='/api/3')
     app.register_blueprint(configure_loader_api(_connection_string), url_prefix='/api/3/loader')
     app.register_blueprint(configure_backward_api(app, manager), url_prefix='/api/2')
     app.register_blueprint(infoAPI, url_prefix='/api/3')
     app.extensions['model_registry'] = ModelRegistry()
     CORS(app)
+    logging.info('OS-API app created')
     return app
 
 
