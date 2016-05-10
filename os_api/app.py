@@ -61,14 +61,13 @@ if 'OS_API_CACHE' in os.environ:
 def return_cached():
     o = urlparse(request.url)
     if cache is not None \
-            and not o.path.startswith(url_for('FDPLoader.load'))\
-            and not o.path.startswith(url_for('babbage_api.cubes')):
+            and not o.path.startswith(url_for('FDPLoader.load')):
         key = hashlib.md5((o.path+'?'+o.query).encode('utf8')).hexdigest()
         response = cache.get(key)
         if response:
             response.from_cache = True
+            response.headers.add('X-OpenSpending-Cache','true')
             return response
-
 
 @app.after_request
 def cache_response(response):
@@ -76,4 +75,5 @@ def cache_response(response):
     if cache is not None and response.status_code == 200 and not hasattr(response, 'from_cache'):
         key = hashlib.md5((o.path+'?'+o.query).encode('utf8')).hexdigest()
         cache.set(key, response, cache_timeout)
+        response.headers.add('X-OpenSpending-Cache','false')
     return response
