@@ -6,7 +6,7 @@
 [![Issues](https://img.shields.io/badge/issue-tracker-orange.svg)](https://github.com/openspending/openspending/issues)
 [![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](http://docs.openspending.org/en/latest/developers/api/)
 
-An API to explorer the OpenSpending database.
+An API to explore the OpenSpending database.
 
 ## Quick start
 
