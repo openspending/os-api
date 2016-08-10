@@ -31,6 +31,9 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(formatter)
 root.addHandler(ch)
 
+logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+
+
 def create_app():
     logging.info('OS-API create_app')
     app = Flask('os_api')
