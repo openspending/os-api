@@ -22,8 +22,10 @@ from .info_api import infoAPI
 
 import logging
 
+import datadog
+
 root = logging.getLogger()
-root.setLevel(logging.DEBUG)
+root.setLevel(logging.INFO)
 
 ch = logging.StreamHandler(sys.stderr)
 ch.setLevel(logging.DEBUG)
@@ -59,24 +61,37 @@ if 'OS_API_CACHE' in os.environ:
     cache = MemcachedCache([os.environ['OS_API_CACHE']])
     cache_timeout = int(os.environ.get('OS_API_CACHE_TIMEOUT',3600))
 
+statsd_host = os.environ.get('OS_STATSD_HOST', 'localhost')
+logging.error('STATSD HOST %s', statsd_host)
+stats = datadog.DogStatsd(host=statsd_host)
 
 @app.before_request
 def return_cached():
     o = urlparse(request.url)
+    stats.increment('openspending.api.requests')
+    for x in {'/aggregate', '/members/', '/facts', '/info/', '/model', '/loader'}:
+        if x in o.path:
+            stats.increment('openspending.api.requests.' + x.replace('/', ''))
+            break
+
     if cache is not None \
             and not o.path.startswith(url_for('FDPLoader.load')):
         key = hashlib.md5((o.path+'?'+o.query).encode('utf8')).hexdigest()
         response = cache.get(key)
         if response:
+            stats.increment('openspending.api.cache.hits')
             response.from_cache = True
             response.headers.add('X-OpenSpending-Cache','true')
             return response
+        stats.increment('openspending.api.cache.misses')
+
 
 @app.after_request
 def cache_response(response):
     o = urlparse(request.url)
+    stats.increment('openspending.api.responses.%d' % response.status_code)
     if cache is not None and response.status_code == 200 and not hasattr(response, 'from_cache'):
         key = hashlib.md5((o.path+'?'+o.query).encode('utf8')).hexdigest()
         cache.set(key, response, cache_timeout)
-        response.headers.add('X-OpenSpending-Cache','false')
+        response.headers.add('X-OpenSpending-Cache', 'false')
     return response

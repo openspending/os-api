@@ -30,10 +30,6 @@ setup(
     test_suite='nose.collector',
     install_requires=[
         # TODO: Add other dependencies once they go into pypi
-        'flask-cors',
-        'flask-jsonpify',
-        'sqlalchemy',
-        'six',
     ],
     tests_require=[
         'pytest',
