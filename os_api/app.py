@@ -2,6 +2,7 @@ import sys
 import os
 import hashlib
 import logging
+
 try:
     from urllib.parse import urlparse
 except ImportError:
@@ -20,8 +21,6 @@ from .config import get_engine, _connection_string
 from .backward import configure_backward_api
 from .info_api import infoAPI
 
-import logging
-
 import datadog
 
 root = logging.getLogger()
@@ -35,20 +34,25 @@ root.addHandler(ch)
 
 logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
+loader = os.environ.get('OS_API_LOADER') is not None
+
 
 def create_app():
     logging.info('OS-API create_app')
     app = Flask('os_api')
     logging.info('OS-API creating cube manager')
     manager = OSCubeManager(get_engine())
-    logging.info('OS-API configuring blueprints')
-    app.register_blueprint(configure_babbage_api(app, manager), url_prefix='/api/3')
-    app.register_blueprint(configure_loader_api(_connection_string), url_prefix='/api/3/loader')
-    app.register_blueprint(configure_backward_api(app, manager), url_prefix='/api/2')
-    app.register_blueprint(infoAPI, url_prefix='/api/3')
+    if loader:
+        logging.info('OS-API configuring loader blueprints')
+        app.register_blueprint(configure_loader_api(_connection_string), url_prefix='/api/3/loader')
+    else:
+        logging.info('OS-API configuring query blueprints')
+        app.register_blueprint(configure_babbage_api(app, manager), url_prefix='/api/3')
+        app.register_blueprint(configure_backward_api(app, manager), url_prefix='/api/2')
+        app.register_blueprint(infoAPI, url_prefix='/api/3')
     app.extensions['model_registry'] = ModelRegistry()
     CORS(app)
-    logging.info('OS-API app created')
+    logging.info('OS-API app created (loader=%s)', loader)
     return app
 
 
@@ -75,7 +79,7 @@ def return_cached():
             break
 
     if cache is not None \
-            and not o.path.startswith(url_for('FDPLoader.load')):
+            and not (loader and o.path.startswith(url_for('FDPLoader.load'))):
         key = hashlib.md5((o.path+'?'+o.query).encode('utf8')).hexdigest()
         response = cache.get(key)
         if response:
