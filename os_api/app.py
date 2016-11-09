@@ -63,7 +63,9 @@ cache_timeout = None
 if 'OS_API_CACHE' in os.environ:
     from werkzeug.contrib.cache import MemcachedCache
     cache = MemcachedCache([os.environ['OS_API_CACHE']])
-    cache_timeout = int(os.environ.get('OS_API_CACHE_TIMEOUT',3600))
+    cache_timeout = int(os.environ.get('OS_API_CACHE_TIMEOUT', 3600))
+logging.error('CACHE %s', cache)
+logging.error('CACHE TIMEOUT %s', cache_timeout)
 
 statsd_host = os.environ.get('OS_STATSD_HOST', 'localhost')
 logging.error('STATSD HOST %s', statsd_host)
