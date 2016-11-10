@@ -11,7 +11,7 @@ sqlalchemy
 six
 git+git://github.com/openspending/babbage.fiscal-data-package.git
 git+git://github.com/openspending/babbage.git@feature/optimize-member-queries#egg=babbage==0.2.0
-git+git://github.com/frictionlessdata/tabulator-py.git@v0.10.4
+git+git://github.com/frictionlessdata/tabulator-py.git@v0.11.1
 git+git://github.com/frictionlessdata/datapackage-py.git@v0.8.4
 git+git://github.com/frictionlessdata/jsontableschema-py.git@v0.8.3
 git+git://github.com/akariv/jsontableschema-sql-py.git@feature/auto-index
