@@ -10,6 +10,7 @@ flask-jsonpify
 sqlalchemy
 six
 redis
+os-api-cache>=0.0.2
 git+git://github.com/openspending/babbage.fiscal-data-package.git
 git+git://github.com/openspending/babbage.git@feature/optimize-member-queries#egg=babbage==0.2.0
 git+git://github.com/frictionlessdata/datapackage-py.git@v0.8.4#egg=datapacakge==0.8.4
