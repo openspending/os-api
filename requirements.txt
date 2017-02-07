@@ -11,9 +11,9 @@ sqlalchemy
 six
 redis
 os-api-cache>=0.0.2
-git+git://github.com/openspending/babbage.fiscal-data-package.git
+babbage_fiscal>=0.0.3
 git+git://github.com/openspending/babbage.git@feature/optimize-member-queries#egg=babbage==0.2.0
-git+git://github.com/frictionlessdata/datapackage-py.git@v0.8.4#egg=datapacakge==0.8.4
-git+git://github.com/frictionlessdata/jsontableschema-py.git@v0.8.3#egg=jsontableschema==0.8.3
-git+git://github.com/frictionlessdata/jsontableschema-sql-py.git#egg=jsontableschema-sql==0.4.0
-git+git://github.com/akariv/tabulator-py.git@feature/fake-user-agent#egg=tabulator==0.11.1
+git+git://github.com/frictionlessdata/datapackage-py.git@feature/full-csv-dialect-support#egg=datapacakge==0.8.5
+jsontableschema==0.8.5
+jsontableschema-sql==0.5.0
+tabulator==0.14.0
