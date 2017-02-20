@@ -9,6 +9,7 @@ flask-cors
 flask-jsonpify
 sqlalchemy
 six
+raven==6.0.0
 redis
 os-api-cache>=0.0.2
 babbage_fiscal>=0.0.3
