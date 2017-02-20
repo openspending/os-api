@@ -5,6 +5,8 @@ import logging
 from flask import Flask
 from flask.ext.cors import CORS
 
+from raven.contrib.flask import Sentry
+
 from babbage.api import configure_api as configure_babbage_api
 from babbage_fiscal import configure_loader_api, ModelRegistry
 
@@ -52,6 +54,7 @@ def create_app():
     _app.extensions['loader'] = loader
 
     CORS(_app)
+    Sentry(app, dsn=os.environ.get('SENTRY_DSN', ''))
 
     logging.info('OS-API app created (loader=%s)', loader)
     return _app
