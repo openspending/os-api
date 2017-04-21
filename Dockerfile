@@ -10,6 +10,7 @@ RUN pip3 install --upgrade pip
 RUN git clone http://github.com/openspending/os-api.git app
 RUN cd app && pip install -r requirements.txt
 RUN pip install -U git+git://github.com/openspending/babbage.fiscal-data-package.git
+RUN pip install -U git+git://github.com/openspending/babbage.git@feature/optimize-member-queries#egg=babbage==0.2.0
 RUN rm -rf /var/cache/apk/*
 
 ENV OS_API_CACHE=redis
