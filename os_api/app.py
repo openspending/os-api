@@ -54,7 +54,7 @@ def create_app():
     _app.extensions['loader'] = loader
 
     CORS(_app)
-    Sentry(_app, dsn=os.environ.get('SENTRY_DSN', ''))
+    # Sentry(_app, dsn=os.environ.get('SENTRY_DSN', ''))
 
     logging.info('OS-API app created (loader=%s)', loader)
     return _app
