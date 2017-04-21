@@ -9,7 +9,7 @@ RUN pip3 --version
 RUN pip3 install --upgrade pip
 RUN git clone http://github.com/openspending/os-api.git app
 RUN cd app && pip install -r requirements.txt
-RUN pip install -U git+git://github.com/akariv/jsontableschema-sql-py.git@feature/auto-index
+RUN pip install -U git+git://github.com/openspending/babbage.fiscal-data-package.git
 RUN rm -rf /var/cache/apk/*
 
 ENV OS_API_CACHE=redis
