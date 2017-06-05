@@ -1,6 +1,8 @@
 import os
 import json
 import six
+import logging
+
 
 from babbage import BabbageException
 from flask import Blueprint, request, current_app
@@ -10,12 +12,17 @@ backwardAPI = Blueprint('BackwardAPI', __name__)
 
 TAXONOMIES = json.load(open(os.path.join(os.path.dirname(__file__), 'taxonomies.json')))
 
+
+log = logging.getLogger()
+
+
 def configure_backward_api(app, manager):
     """ Configure the current Flask app with an instance of ``CubeManager`` that
     will be used to load and query data. """
     if not hasattr(app, 'extensions'):
         app.extensions = {}  # pragma: nocover
     app.extensions['cube_manager'] = manager
+    log.info('SETUP Backward API')
     return backwardAPI
 
 
@@ -94,6 +101,9 @@ def backward_compat_aggregate_api():
     measure_name = get_arg_with_default('measure', 'amount')
     pagesize = request.args.get('pagesize', 10000, int)
     page = request.args.get('page', 1, int)
+
+    log.info('AGGREGATE dataset:%s', dataset)
+    dataset = '6018ab87076187018fc29c94a68a3cd2:' + dataset
 
     # Check if the dataset even exists
     cm = current_app.extensions['cube_manager']
