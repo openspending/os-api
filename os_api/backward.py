@@ -102,8 +102,8 @@ def backward_compat_aggregate_api():
     pagesize = request.args.get('pagesize', 10000, int)
     page = request.args.get('page', 1, int)
 
-    log.info('AGGREGATE dataset:%s', dataset)
     dataset = '6018ab87076187018fc29c94a68a3cd2:' + dataset
+    log.info('AGGREGATE dataset:%s', dataset)
 
     # Check if the dataset even exists
     cm = current_app.extensions['cube_manager']
