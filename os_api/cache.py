@@ -1,4 +1,4 @@
-from urllib.parse import urlparse
+from urllib.parse import urlparse, parse_qs
 
 from flask import current_app, request, url_for
 
@@ -10,7 +10,8 @@ def service_for_path(path, query):
         if x in path:
             package_id = path.split(x)[0].split('/')[-1]
             if package_id == '2':
-                package_id = str(query.get('dataset'))
+                qs = parse_qs(query)
+                package_id = str(qs.get('dataset'))
             service = x.replace('/', '')
             return package_id, service
     return None, None
