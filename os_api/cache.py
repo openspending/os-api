@@ -5,10 +5,12 @@ from flask import current_app, request, url_for
 from os_api_cache import get_os_cache
 
 
-def service_for_path(path):
+def service_for_path(path, query):
     for x in {'/aggregate', '/members/', '/facts', '/package', '/model', '/loader'}:
         if x in path:
             package_id = path.split(x)[0].split('/')[-1]
+            if package_id == '2':
+                package_id = str(query.get('dataset'))
             service = x.replace('/', '')
             return package_id, service
     return None, None
@@ -21,7 +23,7 @@ def return_cached():
 
     o = urlparse(request.url)
     stats.increment('openspending.api.requests')
-    package_id, service = service_for_path(o.path)
+    package_id, service = service_for_path(o.path, o.query)
     if service is not None:
         stats.increment('openspending.api.requests.' + service)
 
