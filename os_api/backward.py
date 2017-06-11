@@ -41,22 +41,26 @@ def canonize_dimension(model, dim, val):
     :param val: the provided value
     :return: tuple with new dimension name and value
     """
-    ret_dim = dim
+    ret_dim = None
     ret_val = val
     ret_attr = None
+    dim = dim.replace('.', '_')
     if dim in model['dimensions']:
         ret_dim = dim
     else:
         for name, dimension in model['dimensions'].items():
+            logging.info('%s? %s:%r',
+                         dim, name, list(dimension['attributes'].keys()))
             if dim in dimension['attributes']:
                 ret_dim = name
                 break
-            elif '.' in dim:
-                parts = dim.split('.')
-                if parts[1] in dimension['attributes'] and parts[0] == dimension.get('hierarchy'):
-                    ret_dim = name
-                    ret_attr = parts[1]
-                    break
+            # elif '.' in dim:
+            #     parts = dim.split('.')
+            #     if parts[1] in dimension['attributes'] and parts[0] == dimension.get('hierarchy'):
+            #         ret_dim = name
+            #         ret_attr = parts[1]
+            #         break
+    assert ret_dim is not None
     dimension = model['dimensions'][ret_dim]
     key_attr = dimension['key_attribute']
     if ret_attr is None:
