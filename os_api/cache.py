@@ -48,7 +48,7 @@ def cache_response(response):
     stats.increment('openspending.api.responses.%d' % response.status_code)
 
     if cache is not None and response.status_code == 200 and not hasattr(response, 'from_cache'):
-        package_id, _ = service_for_path(o.path)
+        package_id, _ = service_for_path(o.path, o.query)
         if package_id is not None:
             cache.put_in_cache(package_id, o.query, o.path, response)
             response.headers.add('X-OpenSpending-Cache', 'false')
