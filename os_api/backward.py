@@ -27,6 +27,9 @@ def configure_backward_api(app, manager):
 
 
 def get_attr_for_dimension_name(model, dim):
+    canonized = model.setdefault('_canonized', {})
+    if dim in canonized:
+        return canonized[dim]
     dim = dim.replace('.', '_')
     attr = None
     if dim in model['dimensions']:
@@ -37,11 +40,14 @@ def get_attr_for_dimension_name(model, dim):
             logging.info('%s? %s:%r',
                          dim, name, list(dimension['attributes'].keys()))
             attributes = dimension['attributes']
-            for attr_name in [dim, dim+'_name']:
+            for attr_name in [dim, dim+'_label', dim+'_name']:
                 if attr_name in attributes:
                     attr = attributes[attr_name]
                     break
+            if attr is not None:
+                break
     assert attr is not None, "Failed to find dimension %s" % dim
+    canonized[dim] = attr
     return attr
 
 
