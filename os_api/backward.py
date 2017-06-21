@@ -143,6 +143,9 @@ def backward_compat_aggregate_api():
 
             # Process the results to build a backward-compatible response
 
+            logging.info('Original AGGREGATE result:\n%s',
+                         json.dumps(aggregate, indent=2))
+
             # General parameters
             count = aggregate['summary']['_count']
             pagesize = aggregate['page_size']
