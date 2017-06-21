@@ -42,6 +42,7 @@ def get_attr_for_dimension_name(model, dim):
                     attr = attributes[attr_name]
                     break
     assert attr is not None, "Failed to find dimension %s" % dim
+    return attr
 
 
 def canonize_dimension(model, dim, val):
