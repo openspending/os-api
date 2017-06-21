@@ -40,10 +40,15 @@ def get_attr_for_dimension_name(model, dim):
             logging.info('%s? %s:%r',
                          dim, name, list(dimension['attributes'].keys()))
             attributes = dimension['attributes']
-            for attr_name in [dim, dim+'_label', dim+'_name']:
-                if attr_name in attributes:
-                    attr = attributes[attr_name]
-                    break
+            name = '_'.join(name.split('_')[1:])
+            if name in [dim, dim+'_name']:
+                attr = dimension
+                attr['datatype'] = attr['attributes'][attr['key_attribute']]['datatype']
+            else:
+                for attr_name in [dim, dim+'_label', dim+'_name']:
+                    if attr_name in attributes:
+                        attr = attributes[attr_name]
+                        break
             if attr is not None:
                 break
     assert attr is not None, "Failed to find dimension %s" % dim
