@@ -194,6 +194,7 @@ def backward_compat_aggregate_api():
             return jsonify(ret)
 
         except Exception as e:
+            logging.exception('Error in handling')
             return jsonify({'errors':[str(e)]})
 
     return jsonify({'errors':['no dataset with name "%s"' % dataset]})
