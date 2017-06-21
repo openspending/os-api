@@ -128,8 +128,9 @@ def backward_compat_aggregate_api():
                 cuts = '|'.join('%s:%s' % (k,json.dumps(v)) for k,v in canonized_cuts)
 
             # drilldowns
-            drilldowns = get_arg_with_default('drilldown')
+            drilldowns = get_arg_with_default('drilldown').split('|')
             drilldowns = [get_attr_for_dimension_name(model, dd)['ref'] for dd in drilldowns]
+            drilldowns = '|'.join(drilldowns)
 
             # result ordering
             order = get_arg_with_default('order', measure_name+'.sum:desc')
