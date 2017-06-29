@@ -209,7 +209,7 @@ def backward_compat_aggregate_api():
                         if attr.startswith(dd_dim):
                             attr = attr[len(dd_dim)+1:]
                         drilldown[dd_dim][attr] = v
-                        if parts[1] == 'name':
+                        if attr == 'name':
                             html_url = 'https://openspending.org/%s/%s/%s' % (dataset, dd_dim,v)
                             drilldown[dd_dim]['html_url'] = html_url
                             drilldown[dd_dim]['id'] = hash(html_url) % 1000 + 1000
