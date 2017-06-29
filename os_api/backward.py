@@ -141,8 +141,8 @@ def backward_compat_aggregate_api():
             # drilldowns
             orig_drilldowns = get_arg_with_default('drilldown').split('|')
             drilldowns = [get_attr_for_dimension_name(model, dd)['ref'] for dd in orig_drilldowns]
-            drilldowns = '|'.join(drilldowns)
             drilldown_translation = dict(zip(drilldowns, orig_drilldowns))
+            drilldowns = '|'.join(drilldowns)
 
             # result ordering
             order = get_arg_with_default('order', measure_name+'.sum:desc')
