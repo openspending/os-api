@@ -26,11 +26,11 @@ def configure_backward_api(app, manager):
     return backwardAPI
 
 
-def get_attr_for_dimension_name(model, dim):
+def get_attr_for_dimension_name(model, orig_dim):
     canonized = model.setdefault('_canonized', {})
-    if dim in canonized:
-        return canonized[dim]
-    dim = dim.replace('.', '_')
+    if orig_dim in canonized:
+        return canonized[orig_dim]
+    dim = orig_dim.replace('.', '_')
     attr = None
     if dim in model['dimensions']:
         dim = model['dimensions'][dim]
@@ -52,7 +52,7 @@ def get_attr_for_dimension_name(model, dim):
             if attr is not None:
                 break
     assert attr is not None, "Failed to find dimension %s" % dim
-    canonized[dim] = attr
+    canonized[orig_dim] = attr
     return attr
 
 
@@ -139,9 +139,10 @@ def backward_compat_aggregate_api():
                 cuts = '|'.join('%s:%s' % (k,json.dumps(v)) for k,v in canonized_cuts)
 
             # drilldowns
-            drilldowns = get_arg_with_default('drilldown').split('|')
-            drilldowns = [get_attr_for_dimension_name(model, dd)['ref'] for dd in drilldowns]
+            orig_drilldowns = get_arg_with_default('drilldown').split('|')
+            drilldowns = [get_attr_for_dimension_name(model, dd)['ref'] for dd in orig_drilldowns]
             drilldowns = '|'.join(drilldowns)
+            drilldown_translation = dict(zip(drilldowns, orig_drilldowns))
 
             # result ordering
             order = get_arg_with_default('order', measure_name+'.sum:desc')
@@ -179,6 +180,7 @@ def backward_compat_aggregate_api():
             ])
 
             # Now process the cell data
+            canonized = model.get('_canonized', {})
             ret['drilldown'] = []
             for cell in aggregate['cells']:
                 drilldown = {}
@@ -193,17 +195,21 @@ def backward_compat_aggregate_api():
                         elif type(v) in six.integer_types:
                             v = str(v)
                         parts = k.split('.')
-                        if parts[0] not in drilldown:
-                            drilldown[parts[0]] = {}
+                        dd_dim = parts[0]
+                        logging.error('dd_dim=%s, to_dim=%s, attr=%r',
+                                     dd_dim, drilldown_translation.get(dd_dim), drilldown_translation)
+                        dd_dim = drilldown_translation.get(dd_dim, dd_dim)
+                        if dd_dim not in drilldown:
+                            drilldown[dd_dim] = {}
                             taxonomy_rules = TAXONOMIES.get(dataset,{})
-                            taxonomy = taxonomy_rules.get(parts[0],parts[0])
-                            drilldown[parts[0]]['taxonomy'] = taxonomy
+                            taxonomy = taxonomy_rules.get(dd_dim, dd_dim)
+                            drilldown[dd_dim]['taxonomy'] = taxonomy
 
-                        drilldown[parts[0]]['.'.join(parts[1:])] = v
+                        drilldown[dd_dim]['.'.join(parts[1:])] = v
                         if parts[1] == 'name':
-                            html_url = 'https://openspending.org/%s/%s/%s' % (dataset,parts[0],v)
-                            drilldown[parts[0]]['html_url'] = html_url
-                            drilldown[parts[0]]['id'] = hash(html_url) % 1000 + 1000
+                            html_url = 'https://openspending.org/%s/%s/%s' % (dataset, dd_dim,v)
+                            drilldown[dd_dim]['html_url'] = html_url
+                            drilldown[dd_dim]['id'] = hash(html_url) % 1000 + 1000
 
                 ret['drilldown'].append(drilldown)
 
