@@ -205,7 +205,10 @@ def backward_compat_aggregate_api():
                             taxonomy = taxonomy_rules.get(dd_dim, dd_dim)
                             drilldown[dd_dim]['taxonomy'] = taxonomy
 
-                        drilldown[dd_dim]['.'.join(parts[1:])] = v
+                        attr = '.'.join(parts[1:])
+                        if attr.startswith(dd_dim):
+                            attr = attr[len(dd_dim):]
+                        drilldown[dd_dim][attr] = v
                         if parts[1] == 'name':
                             html_url = 'https://openspending.org/%s/%s/%s' % (dataset, dd_dim,v)
                             drilldown[dd_dim]['html_url'] = html_url
