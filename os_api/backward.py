@@ -51,6 +51,14 @@ def get_attr_for_dimension_name(model, orig_dim):
                         break
             if attr is not None:
                 break
+        if attr is None:
+            for name, dimension in model['dimensions'].items():
+                for attr_name, attribute in dimension['attributes'].items():
+                    if attr_name.endswith('_'+dim):
+                        attr = attribute
+                        break
+                if attr is not None:
+                    break
     assert attr is not None, "Failed to find dimension %s" % dim
     canonized[orig_dim] = attr
     return attr
