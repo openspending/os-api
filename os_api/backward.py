@@ -156,18 +156,19 @@ def backward_compat_aggregate_api():
             else:
                 drilldowns = None
 
+            # result ordering
             order = get_arg_with_default('order')
             if order is not None:
                 orders = order.split('|')
                 new_orders = []
                 for part in orders:
                     parts = part.split(':')
-                    parts[0] = get_attr_for_dimension_name(model, parts[0])['ref']
+                    if not parts[0].startswith(measure_name+'.sum'):
+                        parts[0] = get_attr_for_dimension_name(model, parts[0])['ref']
                     new_orders.append(':'.join(parts))
                 order = '|'.join(new_orders)
-
-            # result ordering
-            order = get_arg_with_default('order', measure_name+'.sum:desc')
+            else:
+                measure_name+'.sum:desc'
 
             # Call babbage and watch out for errors
             try:
