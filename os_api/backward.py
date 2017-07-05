@@ -217,21 +217,21 @@ def backward_compat_aggregate_api():
                             v = json.dumps(v)
                         elif type(v) in six.integer_types:
                             v = str(v)
-                        dd_dim = k.split('.')[0]
+                        parts = k.split('.')
+                        dd_dim = parts[0]
+                        logging.error('k=%s, dd_dim=%s, to_dim=%s, attr=%r',
+                                     k, dd_dim, drilldown_translation.get(dd_dim), drilldown_translation)
                         dd_dim = drilldown_translation.get(dd_dim, dd_dim)
-                        dim_parts = dd_dim.split('.')
-                        dd_dim = dim_parts[0]
-                        logging.error('dd_dim=%s, to_dim=%s, attr=%r',
-                                      dd_dim, drilldown_translation.get(dd_dim), drilldown_translation)
+                        dd_dim = dd_dim.split('.')[0]
                         if dd_dim not in drilldown:
                             drilldown[dd_dim] = {}
                             taxonomy_rules = TAXONOMIES.get(dataset,{})
                             taxonomy = taxonomy_rules.get(dd_dim, dd_dim)
                             drilldown[dd_dim]['taxonomy'] = taxonomy
 
-                        attr = '.'.join(dim_parts[1:])
-                        # if attr.startswith(dd_dim):
-                        #     attr = attr[len(dd_dim)+1:]
+                        attr = '.'.join(parts[1:])
+                        if attr.startswith(dd_dim):
+                            attr = attr[len(dd_dim)+1:]
                         drilldown[dd_dim][attr] = v
                         if attr == 'name':
                             html_url = 'https://openspending.org/%s/%s/%s' % (dataset, dd_dim,v)
