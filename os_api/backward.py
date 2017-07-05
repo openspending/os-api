@@ -168,7 +168,7 @@ def backward_compat_aggregate_api():
                     new_orders.append(':'.join(parts))
                 order = '|'.join(new_orders)
             else:
-                measure_name+'.sum:desc'
+                order = measure_name+'.sum:desc'
 
             # Call babbage and watch out for errors
             try:
