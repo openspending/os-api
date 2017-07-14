@@ -1,17 +1,26 @@
 FROM gliderlabs/alpine:3.4
 
-RUN apk add --update python3 git libpq wget ca-certificates python3-dev postgresql-dev build-base \
-                     libxml2-dev libxslt-dev libstdc++
+RUN apk --no-cache add \
+    python3 \
+    git \
+    libpq \
+    wget \
+    ca-certificates \
+    python3-dev \
+    postgresql-dev \
+    build-base \
+    libxml2-dev \
+    libxslt-dev \
+    libstdc++
 RUN update-ca-certificates
 RUN wget "https://bootstrap.pypa.io/get-pip.py" -O /dev/stdout | python3
 RUN python3 --version
 RUN pip3 --version
 RUN pip3 install --upgrade pip
-RUN git clone http://github.com/openspending/os-api.git app
-RUN cd app && pip install -r requirements.txt
-RUN pip install -U git+git://github.com/openspending/babbage.fiscal-data-package.git
-RUN pip install -U git+git://github.com/openspending/babbage.git@feature/optimize-member-queries#egg=babbage==0.2.0
-RUN rm -rf /var/cache/apk/*
+
+WORKDIR /app
+ADD . .
+RUN pip install -r requirements.txt
 
 ENV OS_API_CACHE=redis
 ENV OS_STATSD_HOST=10.7.255.254
@@ -22,4 +31,4 @@ ADD docker/startup.sh /startup.sh
 
 EXPOSE 8000
 
-CMD  /startup.sh
+CMD /startup.sh
