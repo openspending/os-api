@@ -11,3 +11,12 @@ An API to explore the OpenSpending database.
 ## Quick start
 
 Clone the repo, install dependencies from pypi, and run the server. See the [docs](http://docs.openspending.org/en/latest/developers/api/) for more information.
+
+## Testing
+
+Make sure you have a local ElasticSearch instance running on `localhost:9200`,
+and run:
+
+```
+$ tox
+```

@@ -1,4 +1,3 @@
-
 language: python
 python:
     - "2.7"
@@ -16,28 +15,14 @@ env:
     global:
         - OS_API_ENGINE=postgresql://postgres@/os
         - OS_ELASTICSEARCH_ADDRESS=localhost:9200
+        - TOXENV="py${PYTHON_VERSION//./}"
+
 install:
-    - python -m pip install --upgrade pip
-    - python -m pip install pytest flask-testing coverage coveralls
-    - python -m pip install git+git://github.com/frictionlessdata/jsontableschema-py.git
-    - python -m pip install git+git://github.com/frictionlessdata/jsontableschema-sql-py.git
-    - python -m pip install git+git://github.com/okfn/tabulator-py.git
-    - python -m pip install git+git://github.com/okfn/datapackage-py.git
-    - python -m pip install git+git://github.com/openspending/babbage.git
-    - python -m pip install git+git://github.com/openspending/babbage.fiscal-data-package.git
-    - python -m pip install -e .
-    - python -m pip install -U git+git://github.com/openspending/babbage.fiscal-data-package.git
-    - python -m pip install -U git+git://github.com/openspending/babbage.git
-    - python -m pip install -U git+git://github.com/okfn/datapackage-py.git
-    - python -m pip install -U git+git://github.com/okfn/tabulator-py.git
-    - python -m pip install -U git+git://github.com/frictionlessdata/jsontableschema-py.git
-    - python -m pip install -U git+git://github.com/frictionlessdata/jsontableschema-sql-py.git
+    - pip install tox coveralls
 before_script:
-    - sleep 10
     - psql -c 'create database os;' -U postgres
-    - python -m pytest --version
 script:
-    - python -m coverage run --source os_api -m pytest
+    - tox
 after_success:
     - coveralls
 notifications:
