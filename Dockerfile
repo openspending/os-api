@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.4
+FROM python:3.6-alpine
 
 RUN apk --no-cache add \
     python3 \
@@ -13,10 +13,6 @@ RUN apk --no-cache add \
     libxslt-dev \
     libstdc++
 RUN update-ca-certificates
-RUN wget "https://bootstrap.pypa.io/get-pip.py" -O /dev/stdout | python3
-RUN python3 --version
-RUN pip3 --version
-RUN pip3 install --upgrade pip
 
 WORKDIR /app
 ADD . .
