@@ -13,7 +13,7 @@ raven==6.0.0
 redis
 os-api-cache>=0.0.2
 babbage_fiscal>=0.0.3
--e git+git://github.com/openspending/babbage.git@feature/optimize-member-queries#egg=babbage==0.2.0
+babbage>=0.2.1
 datapackage>=0.8.6
 jsontableschema>=0.8.5
 jsontableschema-sql>=0.5.0
