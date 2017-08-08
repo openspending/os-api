@@ -113,7 +113,7 @@ def backward_compat_aggregate_api():
     # Fetch general parameters from the request
     orig_dataset = request.args.get('dataset')
     measure_name = get_arg_with_default('measure', 'amount')
-    pagesize = request.args.get('pagesize', 10000, int)
+    pagesize = request.args.get('pagesize', 100, int)
     page = request.args.get('page', 1, int)
 
     dataset = '6018ab87076187018fc29c94a68a3cd2:__os_imported__' + orig_dataset
