@@ -37,8 +37,6 @@ def get_attr_for_dimension_name(model, orig_dim):
         attr = dim['attributes'][dim['key_attribute']]
     else:
         for name, dimension in model['dimensions'].items():
-            logging.info('%s? %s:%r',
-                         dim, name, list(dimension['attributes'].keys()))
             attributes = dimension['attributes']
             name = '_'.join(name.split('_')[1:])
             if name in [dim, dim+'_name']:
@@ -178,9 +176,6 @@ def backward_compat_aggregate_api():
 
             # Process the results to build a backward-compatible response
 
-            logging.info('Original AGGREGATE result:\n%s',
-                         json.dumps(aggregate, indent=2))
-
             # General parameters
             count = aggregate['summary']['_count']
             pagesize = aggregate['page_size']
@@ -219,8 +214,6 @@ def backward_compat_aggregate_api():
                             v = str(v)
                         parts = k.split('.')
                         dd_dim = parts[0]
-                        logging.error('k=%s, dd_dim=%s, to_dim=%s, attr=%r',
-                                     k, dd_dim, drilldown_translation.get(dd_dim), drilldown_translation)
                         dd_dim = drilldown_translation.get(dd_dim, dd_dim)
                         dd_dim = dd_dim.split('.')[0]
                         if dd_dim not in drilldown:
