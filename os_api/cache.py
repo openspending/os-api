@@ -1,3 +1,4 @@
+import logging
 from urllib.parse import urlparse, parse_qs
 
 from flask import current_app, request, url_for
@@ -50,7 +51,11 @@ def cache_response(response):
     if cache is not None and response.status_code == 200 and not hasattr(response, 'from_cache'):
         package_id, _ = service_for_path(o.path, o.query)
         if package_id is not None:
-            cache.put_in_cache(package_id, o.query, o.path, response)
+            try:
+                cache.put_in_cache(package_id, o.query, o.path, response)
+            except Exception:
+                logging.exception('There was a problem caching the response')
+                stats.increment('openspending.api.cache.fail')
             response.headers.add('X-OpenSpending-Cache', 'false')
             response.headers.add('X-OpenSpending-PackageId', package_id)
     return response
