@@ -7,7 +7,7 @@
 amqp==2.2.1               # via kombu
 awesome-slugify==1.6.5
 babbage-fiscal==0.0.5
-babbage==0.2.3
+babbage==0.3.0
 billiard==3.5.0.3         # via celery
 bitarray==0.8.1           # via pybloom-live
 blinker==1.4
@@ -26,7 +26,7 @@ flask-cors==3.0.3
 flask-jsonpify==1.5.0
 flask==0.12.2             # via babbage, flask-cors, flask-jsonpify
 future==0.16.0            # via jsontableschema
-grako==3.7.0              # via babbage
+grako==3.10.1             # via babbage
 gunicorn==19.7.1
 idna==2.5                 # via requests
 ijson==2.3                # via tabulator
