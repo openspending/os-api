@@ -4,6 +4,7 @@ import logging
 
 from flask import Flask
 from flask.ext.cors import CORS
+from werkzeug.contrib.fixers import ProxyFix
 
 from raven.contrib.flask import Sentry
 
@@ -37,6 +38,8 @@ def create_app():
     logging.info('OS-API create_app')
 
     _app = Flask('os_api')
+    _app.wsgi_app = ProxyFix(_app.wsgi_app)
+
     manager = OSCubeManager(get_engine())
 
     loader = os.environ.get('OS_API_LOADER') is not None
