@@ -6,7 +6,7 @@
 #
 amqp==2.2.1               # via kombu
 awesome-slugify==1.6.5
-babbage-fiscal==0.0.6
+babbage-fiscal==0.0.7
 babbage==0.3.1
 billiard==3.5.0.3         # via celery
 bitarray==0.8.1           # via pybloom-live
