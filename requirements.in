@@ -12,10 +12,10 @@ six
 raven==6.0.0
 redis
 os-api-cache>=0.0.2
-babbage_fiscal>=0.0.3
-babbage>=0.3.1
-datapackage>=0.8.6
-jsontableschema>=0.8.5
-jsontableschema-sql>=0.5.0
-tabulator>=0.14.0
+babbage_fiscal>=0.0.10
+babbage>=0.3.3
+datapackage>=1.0.0,<2
+tableschema>=1.0.0,<2
+tableschema-sql>=0.9.0,<2
+tabulator>=1.0.0,<2
 blinker>=1.1

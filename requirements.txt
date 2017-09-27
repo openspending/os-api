@@ -4,10 +4,10 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
-amqp==2.2.1               # via kombu
+amqp==2.2.2               # via kombu
 awesome-slugify==1.6.5
-babbage-fiscal==0.0.7
-babbage==0.3.1
+babbage-fiscal==0.0.10
+babbage==0.3.3
 billiard==3.5.0.3         # via celery
 bitarray==0.8.1           # via pybloom-live
 blinker==1.4
@@ -15,10 +15,10 @@ cchardet==1.1.3
 celery==4.1.0             # via babbage-fiscal
 certifi==2017.7.27.1      # via requests
 chardet==3.0.4            # via normality, requests
-click==6.7                # via babbage-fiscal, flask, jsontableschema, tabulator
+click==6.7                # via babbage-fiscal, datapackage, flask, jsontableschema, tableschema, tabulator
 contextlib2==0.5.5        # via raven
 datadog==0.16.0
-datapackage==0.8.9
+datapackage==1.0.4
 decorator==4.1.2          # via datadog
 elasticsearch==1.9.0      # via babbage-fiscal, os-package-registry
 et-xmlfile==1.0.1         # via openpyxl
@@ -28,16 +28,16 @@ flask==0.12.2             # via babbage, flask-cors, flask-jsonpify
 future==0.16.0            # via jsontableschema
 grako==3.10.1             # via babbage
 gunicorn==19.7.1
-idna==2.5                 # via requests
+idna==2.6                 # via requests
 ijson==2.3                # via tabulator
-isodate==0.5.4            # via jsontableschema
+isodate==0.5.4            # via jsontableschema, tableschema
 itsdangerous==0.24        # via flask
 jdcal==1.3                # via openpyxl
 jinja2==2.9.6             # via flask
-jsonlines==1.1.3          # via tabulator
-jsonschema==2.6.0         # via babbage, datapackage, jsontableschema
-jsontableschema-sql==0.7.4
-jsontableschema==0.10.1
+jsonlines==1.2.0          # via tabulator
+jsonpointer==1.12         # via datapackage
+jsonschema==2.6.0         # via babbage, datapackage, jsontableschema, tableschema
+jsontableschema==0.10.1   # via babbage-fiscal
 kombu==4.1.0              # via celery
 linear-tsv==1.0.0         # via tabulator
 markupsafe==1.0           # via jinja2
@@ -45,24 +45,26 @@ normality==0.4.4          # via babbage
 openpyxl==2.4.8           # via tabulator
 os-api-cache==0.0.5
 os-package-registry==0.0.12  # via babbage-fiscal
-psycopg2==2.7.3
-pybloom-live==2.2.0       # via jsontableschema-sql
-python-dateutil==2.6.1    # via jsontableschema
+psycopg2==2.7.3.1
+pybloom-live==2.3.1       # via tableschema-sql
+python-dateutil==2.6.1    # via jsontableschema, tableschema
 python-memcached==1.58
 pytz==2017.2              # via celery
 pyyaml==3.12              # via babbage
 raven==6.0.0
-redis==2.10.5
-regex==2017.7.28
-requests==2.18.3          # via datadog, datapackage, jsontableschema, tabulator
-rfc3986==0.4.1            # via jsontableschema
+redis==2.10.6
+regex==2017.9.23
+requests==2.18.4          # via datadog, datapackage, jsontableschema, tableschema, tabulator
+rfc3986==0.4.1            # via jsontableschema, tableschema
 simplejson==3.11.1        # via datadog
-six==1.10.0
-sqlalchemy==1.1.13
-tabulator==1.2.0
-unicodecsv==0.14.1        # via datapackage, jsontableschema, tabulator
+six==1.11.0
+sqlalchemy==1.1.14
+tableschema-sql==0.10.0
+tableschema==1.0.3
+tabulator==1.5.0
+unicodecsv==0.14.1        # via datapackage, jsontableschema, tableschema, tabulator
 unidecode==0.4.21         # via awesome-slugify
 urllib3==1.22             # via elasticsearch, requests
 vine==1.1.4               # via amqp
 werkzeug==0.12.2          # via flask
-xlrd==1.0.0               # via tabulator
+xlrd==1.1.0               # via tabulator
