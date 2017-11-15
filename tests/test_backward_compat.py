@@ -56,12 +56,16 @@ def compare_objects(o1,o2,prefix=''):
                 err.append("Types for %s/%s are different (%r,%r)" % (prefix,k,v1,v2))
     return err
 
-okayed = set(open('tested-ok.txt').read().split('\n'))
-ok = open('tested-ok.txt', 'a')
+try:
+  okayed = set(open('tested-ok.txt').read().split('\n'))
+  ok = open('tested-ok.txt', 'a')
+except:
+  okayed = set()
+  ok = open('tested-ok.txt', 'w')
 
 def test_loader_and_backward_compatibility_api_success():
     count = 0
-    responses = zipfile.ZipFile('backward_responses.zip','r')
+    responses = zipfile.ZipFile('tests/backward_responses.zip','r')
     for path in responses.namelist():
         count += 1
         if path not in okayed:
@@ -84,7 +88,7 @@ def test_loader_and_backward_compatibility_api_success():
 
 def test_loader_and_backward_compatibility_api_errors():
     count = 0
-    responses = zipfile.ZipFile('backward_mismatch_responses.zip','r')
+    responses = zipfile.ZipFile('tests/backward_mismatch_responses.zip','r')
     for path in responses.namelist():
         count += 1
         if path not in okayed:
