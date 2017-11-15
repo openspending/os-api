@@ -107,3 +107,4 @@ ENV/
 # Misc
 celerydb.sqlite
 gunicorn.log
+tested-ok.txt

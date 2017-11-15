@@ -13,7 +13,7 @@ class TestAPI(object):
         res = client.get('/api/3/')
         assert res.status_code == 200
         assert res.json['status'] == 'ok'
-        res = client.get('/api/3/cubes')
+        res = client.get('/api/3/cubes/')
         assert res.status_code == 200
         assert '__testing:ukgov-finances-cra' in [i['name'] for i in res.json['data']]
 
