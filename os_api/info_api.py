@@ -9,4 +9,3 @@ def get_package(slug):
     mr = current_app.extensions['model_registry']
     if mr.has_model(slug):
         return jsonify(mr.get_package(slug))
-
