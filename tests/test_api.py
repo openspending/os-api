@@ -23,6 +23,10 @@ class TestAPI(object):
         assert res.status_code == 200
         assert res.json['name'] == 'ukgov-finances-cra'
 
+    def test_package_inspection_configured_notfound(self, client):
+        res = client.get('/api/3/info/__testing:no-package-here/package')
+        assert res.status_code == 404
+
     @pytest.mark.skip
     def test_loader_and_backward_compatibility_api_success(self, client):
         responses = zipfile.ZipFile('tests/backward_responses.zip', 'r')
