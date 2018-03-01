@@ -15,7 +15,7 @@ cchardet==1.1.3
 celery==4.1.0             # via babbage-fiscal
 certifi==2017.7.27.1      # via requests
 chardet==3.0.4            # via normality, requests
-click==6.7                # via babbage-fiscal, datapackage, flask, jsontableschema, tableschema, tabulator
+click==6.7                # via babbage-fiscal, datapackage, flask, jsontableschema, python-dotenv, tableschema, tabulator
 contextlib2==0.5.5        # via raven
 datadog==0.16.0
 datapackage==1.0.4
@@ -48,6 +48,7 @@ os-package-registry==0.0.12  # via babbage-fiscal
 psycopg2==2.7.3.1
 pybloom-live==2.3.1       # via tableschema-sql
 python-dateutil==2.6.1    # via jsontableschema, tableschema
+python-dotenv==0.7.1
 python-memcached==1.58
 pytz==2017.2              # via celery
 pyyaml==3.12              # via babbage
