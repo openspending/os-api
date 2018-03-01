@@ -12,6 +12,21 @@ An API to explore the OpenSpending database.
 
 Clone the repo, install dependencies from pypi, and run the server. See the [docs](http://docs.openspending.org/en/latest/developers/api/) for more information.
 
+For development, create a `.env` file and add environmental variables:
+
+```ini
+# Address of elasticsearch server
+OS_ELASTICSEARCH_ADDRESS=localhost:9200
+# Address of RabbitMQ
+CELERY_CONFIG=amqp://guest:guest@localhost:5672//
+CELERY_BACKEND_CONFIG=amqp://guest:guest@localhost:5672//
+# Address of Redis instance
+OS_API_CACHE=localhost
+```
+
+A development server can be started with:
+`python dev_server.py`
+
 ## Testing
 
 Make sure you have a local ElasticSearch instance running on `localhost:9200`,
