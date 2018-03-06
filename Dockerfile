@@ -22,11 +22,6 @@ RUN pip install -r requirements.txt
 
 ADD . .
 
-# ENV OS_API_CACHE=redis
-# ENV OS_STATSD_HOST=10.7.255.254
-# ENV CELERY_CONFIG=amqp://guest:guest@mq:5672//
-# ENV CELERY_BACKEND_CONFIG=amqp://guest:guest@mq:5672//
-
 COPY docker/startup.sh /startup.sh
 COPY docker/docker-entrypoint.sh /entrypoint.sh
 

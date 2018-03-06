@@ -21,7 +21,7 @@ OS_ELASTICSEARCH_ADDRESS=localhost:9200
 CELERY_CONFIG=amqp://guest:guest@localhost:5672//
 CELERY_BACKEND_CONFIG=amqp://guest:guest@localhost:5672//
 # Address of Redis instance
-OS_API_CACHE=localhost
+OS_API_CACHE=redis
 ```
 
 A development server can be started with:
