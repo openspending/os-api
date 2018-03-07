@@ -22,6 +22,9 @@ CELERY_CONFIG=amqp://guest:guest@localhost:5672//
 CELERY_BACKEND_CONFIG=amqp://guest:guest@localhost:5672//
 # Address of Redis instance
 OS_API_CACHE=redis
+
+# Check health of ElasticSearch before starting app (optional)
+OS_CHECK_ES_HEALTHY='True'
 ```
 
 A development server can be started with:
