@@ -1,0 +1,6 @@
+.env
+.git
+.tox
+.cache
+.pytest_cache
+*.egg-info/

@@ -11,4 +11,3 @@ def setup_stats(app):
 
     logging.info('STATSD HOST %s', statsd_host)
     return stats
-

@@ -20,6 +20,11 @@ from .info_api import infoAPI
 from .cache import setup_caching
 from .stats import setup_stats
 
+from dotenv import load_dotenv
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '../.env')
+load_dotenv(dotenv_path)
+
 
 def setup_logging():
     root = logging.getLogger()
