@@ -15,9 +15,9 @@ env:
         - OS_API_ENGINE=postgresql://postgres@/postgres
         - OS_ELASTICSEARCH_ADDRESS=localhost:9200
         # DOCKER_USERNAME
-        - secure: XKtk/mVKMBmyLhF+P9thIcP7stsPPG2Xd7JATB1ey73s1gIBPh2c9SqTeQXNjZv0adumoRpxCQPZRpzqqiynG24d0IIiK5KGCj/Yo+8v6+CkuFo0l+t+pmocR+z7iQIqpTP7SjdJjcpwBCY1yBCTveC10mjPIFtkstVtrF/0pnwGkXgYQOOiNX/kOrx8M66webirr7rICA0CGH+sWVJu0yAvtqZauVp1p1pBC8fd+yJDisxFZhzEnmUJ7nshAalzecR82CF9A6WjEnwjDDVuT1myERZCb1sQ8LODLVgGJ3jf6EWgHz1HO82Uwdz3ri4ps8z40/EWpdtrkGX7afN8SlPBnhybLu00ecXBWEDDaben+8wWVYVgAlY4bRqnIq5jAU99gS81NpmSh7linFPqp0ZM6xELWbpPuYY5u510iZeHUkXcNxDZaJdYOCZ8Z0u4KyxJb44wZ/ODVx80JoRmiYdkDKOIDxLLVVOsqRWulBETtsK3UEm8nsI4WjTj0ifdUUoZNP4UslDljFTniNe/LArlj8GyL8w4ZrORtVBREvSqIYx7aNN3yW9kV7bibI7+jVNXqHJ3QQBlUnyfK/SUQJ0oiqxz4R0jQijgIqJlrXCI1O4zYy87pU1ClNUPuSnxGsZGyczqLQIHAC8UXeARFTZ5w6Exx/5tIZ6KQA+jikg=
+        - secure: stuHESFXIArG1T1u4ddSwOsrNMjQ9TSAw/UYdWqs5rdkkBz+tYA2S0f8fqpE7kLffwcsnie0lWAuF5HpGWsb42ZAgDnY8ENJBds+65378uT7CepsM+A4GkLdSYGQTgrhTgAmbLJtBIt4vzELisW2V/G2rSlrfS1OjQZKaDeoqXQLOslCE/05oKFvyYw1YN4fpPFqjJVeBNBqXmVYSjBz7CrinUcxQfqUhMqGfgF7VgjTO4Jt+vKU4ym3nKgqyRufYWbgmbEoevi/3JAHuWx73kCv7MVnQQaBdyXdPLQLLqmR/PSxkUsAfH+rUWdam+mF3txB9si+Pw17LUaV+hnVJ+N8zpOTIkxN1bDHilWWdrw52lM5n/7//uBABAa2DZO2+8F2o7oh1sH5anKCRv48dvpboRsqoG+ymnGsDv01QlgcWcZ8hcj8KOC6kmbnjNK9hCk+WywWKo2LSs8+FfD/fTfBeUPKB1lPLFn64DzpOLGzbAUhvQ7bsP+Py1awf6ClcHgSXvWdJQTEuOGr8eJ7zPXE4BC2+tWXEDM+0rOiF2saGqXzQqS5BGmtvtk+U7ujquFSfYm038PLl7uYU+pdBRSI3p5rC1aAWYaPayyGUnnZwK3rMta/ih/GVM6LZtdkXn1wVHitjrDRVTdVF/jwZN7vzltjmormMMPAKWIHK9Q=
         # DOCKER_PASSWORD
-        - secure: EbAK+OB3kSgDdPysADnzxaJLEUyYLvJzRGXTtj4WHHX6CRV0id8aA8za5cXLGHb8YOMCLagldWJUM9lu0F2xWZ3Hx0DyEwpriA0n8oxJN0Pq+Cp3N8HbN4Wz8v3HCqj41zZdfXRBvDXxqPnbwb0A7QO0nqWncXDNkyRYin60MzXkEQEjzUQDDwKDZjAXQvN8olWgu36XNuug1+XxVq1rOsmGgBIhsS4jiUq2WouviYs6E5e3Kxnmm4rRWf5li5Y7XXmrJXiloBlKDoEx4Qplbai5bgbCrBXMAe1vyL0P3YeumgdP2mXLB+hWMHuNLJIviO9PTvm8WaJ+UTwjMzF07wDXkK6/GlNc7KMkpk2Z28K+TTw9HOESipo9gCTCwbQbFmgHIT3jJCyZ7xPFiNJZucfjU1paaPYde+vGgZKAsyLHnQzrdcaDh8rIcjjp59IaI7jkRg8bJlGVq4t96aKwwYX6mx4EHot/w6MxnhwuK6iflc5WeLjc87tkC4baWe6JDe5lzCL69k/Uln322vyx+OR50A0nYzvPs2mE97Zu+gCE18w5wMAmi9LVwQ87wLi4i4zGMPb9AVmNkzxTaw5yL9KYVZojtBELkwycdcuM1vhno+HTatfORJA+VpWI4WOHojYpc+w9msmnKV2UdFfDPuPq1Pin2lpkEvcoiPEKn5E=
+        - secure: eJo9+lYTblyEztl5zZ7+x3JJBNvC96dxHFYiR4JZR3mGjvXnw6q//t821LB6bA9jmnlE15PjU1iOrn/eZuiu+uizEc60VdSZOq9y1CAFVR27ck8VXLAFNpLCpe39Ybu3zhYV5SpH2GoHaNhBvoxxWHXD7xhZ6AgtX6xHPzmwyfB7kzpXvuhZK/gAO3nYiWDacNyfDIcRKMceHLgK698p+eau6iUnL28D4gQPadyHXN8jFVG61oT//S1OedBZUROrJOTOXeJqC4Zp3uDwGnfGsLPQZkwDxfJQBgqxCsohf2hj09itJQoPSzpm3/rMrswciYqkJqIGElO8QT42qjlRSv6Qzwu/jlbCgaS5tgS236lXxT2qGwI762f+WfSDqOkXRBI+lKMb66XJlrjAdtAdcSIlb7w16teIqqhyHHrY9aMnsvAnY7mK7QlPYtO0HueRC6C58cc6feoz6pyleWYky0lxfmsHtZp+dmOyAIWo7W+ctUvOr108cCLsoP4MNmH/RMpx8EFpthgpiTNqvd3RCzQitK/nPdoiJcDmfLshCNs9Zi2iZ909TbsaSriKBBB4l/m0Z8BqVKLlN7jjESHkttKpxIp6MYh3Kw9WIOUAvxVSvaPe/z6fzrIYMXqHinxpc9yQn4FcegLUFtsUvPIlEHgknpBwJFZEdAc31YKzMR8=
 
 before_install:
   - sudo rm -f /etc/boto.cfg
@@ -46,32 +46,3 @@ deploy:
     script: make ci-push
     on:
       branch: master
-
-
-# language: python
-# python:
-#     - "3.6"
-
-# addons:
-#     postgresql: "9.4"
-
-# services:
-#     - elasticsearch
-
-# env:
-#     global:
-#         - OS_API_ENGINE=postgresql://postgres@/os
-#         - OS_ELASTICSEARCH_ADDRESS=localhost:9200
-#         - TOXENV="py${PYTHON_VERSION//./}"
-
-# install:
-#     - pip install tox coveralls
-# before_script:
-#     - psql -c 'create database os;' -U postgres
-# script:
-#     - tox
-# after_success:
-#     - coveralls
-# notifications:
-#   slack:
-#     secure: XOKB7xGcgekspiAbsMxUbo7mnm09oN9PaipzSD2B6P2HyBP9RFCqsSBomqncLjvnypbINISa3npxdT8tZ7f4NgrZQBtIPcKgiuKbWBfecXtQylnnYc65QCfdM465MOJWzGCwUk8RP6PqcBz0yL0VDYlNKOxhle4QcCeaw86TXhzaSkTJOzWc/kdsVT6GQRE/ecR2sNDezmfvXA8Y8M60Jdkze/3U+ix2T8DgKyYISvds4IMPDz2X2QpjJzvB1i4onQLxrE+H93Djnf+b4Fyi5q4TJG74boKLqeddY3V83y3H2G5oSrEgqaSOWq/klSjkmTIPUsYmwRSU6CcW/J6BqK74lubuEfPYHwqwFYymyPeFHTBBnRtU9EsTR5/q+7TiNaDllIItm+5CAu29K5UoQQBqeX0uaEyPHwK5VfDson6Wl8KljDBjeZnQj9JRREG/rGm2YAKrmyx9QXImexqqGfXOt/AQGlSwjM5jU11O7411EdG+1eAzYIXqlfH8sZbnfF2t8D1YAIUmJLOg9coJbxv0d3592dGxROANe3ZuNRUkviGubs2IFmBp/XyZYej1tQIhWdyBB22JGz5ovbRIN8a9rSyi1czhcy6jv1UjQoerQWzrwMXSKZOA7dLTZN0HvyBdWysxL+GpB6dS55A/iWQsGK9jW18cF6z1g81kcUA=
