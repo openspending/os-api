@@ -15,6 +15,10 @@ Clone the repo, install dependencies from pypi, and run the server. See the [doc
 For development, create a `.env` file and add environmental variables:
 
 ```ini
+# Address for the postgres instance, e.g. postgresql://postgres@db/postgres
+OS_API_ENGINE=postgresql://postgres@db/postgres
+# Address of RabbitMQ instance
+OS_MQ_ADDRESS=mq
 # Address of elasticsearch server
 OS_ELASTICSEARCH_ADDRESS=localhost:9200
 # Address of RabbitMQ
