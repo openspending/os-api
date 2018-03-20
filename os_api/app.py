@@ -9,7 +9,7 @@ from werkzeug.contrib.fixers import ProxyFix
 from raven.contrib.flask import Sentry
 
 from babbage.api import configure_api as configure_babbage_api
-from babbage_fiscal import configure_loader_api, ModelRegistry
+from os_package_registry import PackageRegistry
 
 from .config import get_engine, _connection_string
 
@@ -47,18 +47,12 @@ def create_app():
 
     manager = OSCubeManager(get_engine())
 
-    loader = os.environ.get('OS_API_LOADER') is not None
+    logging.info('OS-API configuring query blueprints')
+    _app.register_blueprint(configure_babbage_api(_app, manager), url_prefix='/api/3')
+    _app.register_blueprint(configure_backward_api(_app, manager), url_prefix='/api/2')
+    _app.register_blueprint(infoAPI, url_prefix='/api/3')
 
-    if loader:
-        logging.info('OS-API configuring loader blueprints')
-        _app.register_blueprint(configure_loader_api(_connection_string), url_prefix='/api/3/loader')
-    else:
-        logging.info('OS-API configuring query blueprints')
-        _app.register_blueprint(configure_babbage_api(_app, manager), url_prefix='/api/3')
-        _app.register_blueprint(configure_backward_api(_app, manager), url_prefix='/api/2')
-        _app.register_blueprint(infoAPI, url_prefix='/api/3')
-
-    _app.extensions['model_registry'] = ModelRegistry()
+    _app.extensions['model_registry'] = PackageRegistry(es_connection_string=os.environ.get('OS_ELASTICSEARCH_ADDRESS','localhost:9200'))
     _app.extensions['loader'] = loader
 
     CORS(_app)
