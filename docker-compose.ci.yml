@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+
+  os-api:
+    build: .
+    container_name: os-api
+    environment:
+      OS_API_ENGINE: postgresql://postgres@db/postgres
+      OS_ELASTICSEARCH_ADDRESS: es:9200
+      OS_MQ_ADDRESS: mq
+
+      OS_API_CACHE: redis
+      OS_API_CACHE_TIMEOUT: 86400
+      CELERY_CONFIG: amqp://guest:guest@mq:5672//
+      CELERY_BACKEND_CONFIG: amqp://guest:guest@mq:5672//
+
+      OS_CHECK_ES_HEALTHY: 'True'
+    restart: always
+    depends_on:
+      - db
+      - es
+      - mq
+      - redis
+
+  redis:
+    image: 'redis:3.2-alpine'
+    expose:
+      - 6379
+    ports:
+      - "6379:6379"
+
+  db:
+    image: 'postgres:10-alpine'
+    expose:
+      - 5432
+
+  es:
+    image: 'elasticsearch:1.5'
+    expose:
+      - 9200
+      - 9300
+
+  mq:
+    image: 'rabbitmq:3.6.3-management'
+    expose:
+      - 5672
+      - 15672
