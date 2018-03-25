@@ -2,9 +2,11 @@ import zipfile
 import json
 import six
 import pytest
+import os
 
-import babbage_fiscal
 from os_api import config
+
+from datapackage_pipelines.manager.runner import run_pipelines
 
 
 @pytest.mark.usefixtures('load_sample_fdp_to_db')
@@ -54,10 +56,8 @@ class TestAPI(object):
 
 @pytest.fixture(scope='module')
 def load_sample_fdp_to_db(elasticsearch):
-    DATAPACKAGE_URL = "https://raw.githubusercontent.com/akariv/openspending-migrate/adam__test_datetime_dimension_change/examples/ukgov-finances-cra/datapackage.json"  # noqa
-
-    loader = babbage_fiscal.FDPLoader(engine=config.get_engine())
-    loader.load_fdp_to_db(DATAPACKAGE_URL)
+    os.environ['DPP_DB_ENGINE'] = config._connection_string
+    run_pipelines('all', os.path.join(os.path.dirname(__file__), 'sample_data'))
 
 
 def compare_objects(o1, o2, prefix=''):

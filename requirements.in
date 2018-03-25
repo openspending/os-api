@@ -18,6 +18,6 @@ babbage>=0.3.5
 datapackage>=1.0.0,<2
 tableschema>=1.0.0,<2
 tableschema-sql>=0.9.0,<2
-tabulator>=1.0.0,<2
+tabulator>=1.10.0,<2
 blinker>=1.1
 python-dotenv

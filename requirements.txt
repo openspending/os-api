@@ -54,7 +54,7 @@ six==1.11.0
 sqlalchemy==1.1.14
 tableschema-sql==0.10.0
 tableschema==1.0.3
-tabulator==1.5.0
+tabulator==1.14.0
 unicodecsv==0.14.1        # via datapackage, tableschema, tabulator
 unidecode==0.4.21         # via awesome-slugify
 urllib3==1.22             # via elasticsearch, requests
