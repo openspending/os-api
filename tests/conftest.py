@@ -2,7 +2,6 @@ import os
 from elasticsearch import Elasticsearch
 import pytest
 
-import babbage_fiscal
 from os_api.app import create_app
 
 

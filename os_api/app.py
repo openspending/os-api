@@ -45,20 +45,20 @@ def create_app():
     _app = Flask('os_api')
     _app.wsgi_app = ProxyFix(_app.wsgi_app)
 
-    manager = OSCubeManager(get_engine())
+    registry = PackageRegistry(es_connection_string=os.environ.get('OS_ELASTICSEARCH_ADDRESS','localhost:9200'))
+    manager = OSCubeManager(get_engine(), registry)
 
     logging.info('OS-API configuring query blueprints')
     _app.register_blueprint(configure_babbage_api(_app, manager), url_prefix='/api/3')
     _app.register_blueprint(configure_backward_api(_app, manager), url_prefix='/api/2')
     _app.register_blueprint(infoAPI, url_prefix='/api/3')
 
-    _app.extensions['model_registry'] = PackageRegistry(es_connection_string=os.environ.get('OS_ELASTICSEARCH_ADDRESS','localhost:9200'))
-    _app.extensions['loader'] = loader
+    _app.extensions['model_registry'] = registry
 
     CORS(_app)
     Sentry(_app, dsn=os.environ.get('SENTRY_DSN', ''))
 
-    logging.info('OS-API app created (loader=%s)', loader)
+    logging.info('OS-API app created')
     return _app
 
 

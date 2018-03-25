@@ -1,11 +1,10 @@
 from babbage import CubeManager
-from babbage_fiscal import ModelRegistry
 
 class OSCubeManager(CubeManager):
 
-    def __init__(self,engine):
+    def __init__(self, engine, registry):
         super(OSCubeManager, self).__init__(engine)
-        self.registry = ModelRegistry()
+        self.registry = registry
 
     def list_cubes(self):
         """ List all available models in the DB """
