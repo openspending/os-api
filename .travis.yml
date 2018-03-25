@@ -29,7 +29,7 @@ before_install:
 install:
   # Will build local Dockerfile as part of ci-run (docker-compose up)
   - make ci-run
-  - pip install tox coveralls
+  - pip install tox coveralls datapackage-pipelines datapackage-pipelines-fiscal
 
 before_script:
   - sleep 30
@@ -37,6 +37,7 @@ before_script:
 
 script:
   - make ci-test
+  - cd tests/sample_data && ls && dpp && dpp run --verbose all
   - tox
 
 after_success:
