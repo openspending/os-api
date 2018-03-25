@@ -3,6 +3,7 @@ import json
 import six
 import pytest
 import os
+import logging
 
 from os_api import config
 
@@ -57,7 +58,8 @@ class TestAPI(object):
 @pytest.fixture(scope='module')
 def load_sample_fdp_to_db(elasticsearch):
     os.environ['DPP_DB_ENGINE'] = config._connection_string
-    run_pipelines('all', os.path.join(os.path.dirname(__file__), 'sample_data'))
+    run_pipelines('all', os.path.join(os.path.dirname(__file__), 'sample_data'),
+                  progress_cb=lambda x: logging.info('fixture progress %r', x))
 
 
 def compare_objects(o1, o2, prefix=''):
