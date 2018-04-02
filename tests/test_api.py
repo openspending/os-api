@@ -15,13 +15,13 @@ class TestAPI(object):
         assert res.json['status'] == 'ok'
         res = client.get('/api/3/cubes/')
         assert res.status_code == 200
-        assert '__testing:ukgov-finances-cra' \
+        assert '__testing:ukgov_finances_cra' \
             in [i['name'] for i in res.json['data']]
 
     def test_package_inspection_configured_success(self, client):
-        res = client.get('/api/3/info/__testing:ukgov-finances-cra/package')
+        res = client.get('/api/3/info/__testing:ukgov_finances_cra/package')
         assert res.status_code == 200
-        assert res.json['name'] == 'ukgov-finances-cra'
+        assert res.json['name'] == 'ukgov_finances_cra'
 
     def test_package_inspection_configured_notfound(self, client):
         res = client.get('/api/3/info/__testing:no-package-here/package')
@@ -33,7 +33,7 @@ class TestAPI(object):
         for path in responses.namelist():
             canned_response = json.loads(responses.read(path).decode('utf8'))
             path = path.replace('=ukgov-finances-cra',
-                                '=__testing:ukgov-finances-cra')
+                                '=__testing:ukgov_finances_cra')
             actual_response = client.get(path).json
             errors = compare_objects(canned_response, actual_response)
             if len(errors) > 0:
