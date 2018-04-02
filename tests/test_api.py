@@ -7,10 +7,7 @@ import logging
 
 from os_api import config
 
-from datapackage_pipelines.manager.runner import run_pipelines
 
-
-@pytest.mark.usefixtures('load_sample_fdp_to_db')
 class TestAPI(object):
     def test_babbage_api_configured_success(self, client):
         res = client.get('/api/3/')
@@ -53,13 +50,6 @@ class TestAPI(object):
             actual_response = client.get(path).json
             errors = compare_objects(canned_response, actual_response)
             assert len(errors) > 0
-
-
-@pytest.fixture(scope='module')
-def load_sample_fdp_to_db(elasticsearch):
-    os.environ['DPP_DB_ENGINE'] = config._connection_string
-    run_pipelines('all', os.path.join(os.path.dirname(__file__), 'sample_data'),
-                  progress_cb=lambda x: logging.info('fixture progress %r', x))
 
 
 def compare_objects(o1, o2, prefix=''):
