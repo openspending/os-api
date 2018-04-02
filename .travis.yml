@@ -17,6 +17,7 @@ addons:
 env:
     global:
         - OS_API_ENGINE=postgresql://postgres@/postgres
+        - DPP_DB_ENGINE=postgresql://postgres@/postgres
         - OS_ELASTICSEARCH_ADDRESS=localhost:9200
         # DOCKER_USERNAME
         - secure: stuHESFXIArG1T1u4ddSwOsrNMjQ9TSAw/UYdWqs5rdkkBz+tYA2S0f8fqpE7kLffwcsnie0lWAuF5HpGWsb42ZAgDnY8ENJBds+65378uT7CepsM+A4GkLdSYGQTgrhTgAmbLJtBIt4vzELisW2V/G2rSlrfS1OjQZKaDeoqXQLOslCE/05oKFvyYw1YN4fpPFqjJVeBNBqXmVYSjBz7CrinUcxQfqUhMqGfgF7VgjTO4Jt+vKU4ym3nKgqyRufYWbgmbEoevi/3JAHuWx73kCv7MVnQQaBdyXdPLQLLqmR/PSxkUsAfH+rUWdam+mF3txB9si+Pw17LUaV+hnVJ+N8zpOTIkxN1bDHilWWdrw52lM5n/7//uBABAa2DZO2+8F2o7oh1sH5anKCRv48dvpboRsqoG+ymnGsDv01QlgcWcZ8hcj8KOC6kmbnjNK9hCk+WywWKo2LSs8+FfD/fTfBeUPKB1lPLFn64DzpOLGzbAUhvQ7bsP+Py1awf6ClcHgSXvWdJQTEuOGr8eJ7zPXE4BC2+tWXEDM+0rOiF2saGqXzQqS5BGmtvtk+U7ujquFSfYm038PLl7uYU+pdBRSI3p5rC1aAWYaPayyGUnnZwK3rMta/ih/GVM6LZtdkXn1wVHitjrDRVTdVF/jwZN7vzltjmormMMPAKWIHK9Q=
