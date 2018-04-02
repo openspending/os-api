@@ -30,12 +30,12 @@ before_install:
   - nvm install 8
   - nvm use 8
   - npm install -g os-types
-  - sudo apt-get install libleveldb-dev libleveldb1
+  - sudo apt-get install libleveldb-dev libleveldb1 libpq-dev python3-dev
 
 install:
   # Will build local Dockerfile as part of ci-run (docker-compose up)
   - make ci-run
-  - pip install tox coveralls datapackage-pipelines[speedup] datapackage-pipelines-fiscal
+  - pip install tox coveralls datapackage-pipelines[speedup] datapackage-pipelines-fiscal psycopg2
 
 before_script:
   - sleep 30
