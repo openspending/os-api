@@ -43,7 +43,7 @@ before_script:
 
 script:
   - make ci-test
-  - cd tests/sample_data && ls && dpp && dpp run --verbose all
+  - cd tests/sample_data && ls && dpp && dpp run --verbose --concurrency=8 all
   - tox
 
 after_success:
