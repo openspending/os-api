@@ -14,7 +14,7 @@ chardet==3.0.4            # via normality, requests
 click==6.7                # via datapackage, flask, python-dotenv, tableschema, tabulator
 contextlib2==0.5.5        # via raven
 datadog==0.16.0
-datapackage==1.0.4
+datapackage==1.2.3
 decorator==4.1.2          # via datadog
 elasticsearch==1.9.0
 et-xmlfile==1.0.1         # via openpyxl
@@ -48,12 +48,12 @@ raven==6.0.0
 redis==2.10.6
 regex==2017.9.23
 requests==2.18.4          # via datadog, datapackage, tableschema, tabulator
-rfc3986==0.4.1            # via tableschema
+rfc3986==1.1.0            # via tableschema
 simplejson==3.11.1        # via datadog
 six==1.11.0
 sqlalchemy==1.1.14
 tableschema-sql==0.10.0
-tableschema==1.0.3
+tableschema==1.0.12
 tabulator==1.14.0
 unicodecsv==0.14.1        # via datapackage, tableschema, tabulator
 unidecode==0.4.21         # via awesome-slugify
