@@ -25,4 +25,4 @@ if [ ! -z "$OS_API_LOADER" ]; then
     FISCAL_PACKAGE_ENGINE=$OS_API_ENGINE bb-fdp-cli create-tables && echo "CREATED TABLES"
     python3 -m celery --concurrency=4 -A babbage_fiscal.tasks -l INFO worker &
 fi
-gunicorn -t 120 -w 4 os_api.app:app -b 0.0.0.0:8000
+gunicorn -t 120 -w 4 os_api.app:app -b 0.0.0.0:8000  "$@"
