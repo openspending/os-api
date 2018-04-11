@@ -11,7 +11,7 @@ sqlalchemy
 six
 raven==6.0.0
 redis
-os-api-cache>=0.0.2
+os-api-cache>=0.0.6
 babbage_fiscal>=0.0.10
 babbage>=0.3.3
 datapackage>=1.0.0,<2

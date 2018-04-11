@@ -43,7 +43,7 @@ linear-tsv==1.0.0         # via tabulator
 markupsafe==1.0           # via jinja2
 normality==0.4.4          # via babbage
 openpyxl==2.4.8           # via tabulator
-os-api-cache==0.0.5
+os-api-cache==0.0.6
 os-package-registry==0.0.12  # via babbage-fiscal
 psycopg2==2.7.3.1
 pybloom-live==2.3.1       # via tableschema-sql
