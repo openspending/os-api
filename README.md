@@ -36,9 +36,35 @@ A development server can be started with:
 
 ## Testing
 
-Make sure you have a local ElasticSearch instance running on `localhost:9200`,
-and run:
+You need a few services running, namely elasticsearch v1.5 running on localhost:9200 and PostgreSQL
 
+
+Then set a few environment variables (your DB connection string might vary):
+```bash
+$ export OS_API_ENGINE=postgresql://postgres@/postgres
+$ export DPP_DB_ENGINE=postgresql://postgres@/postgres
+$ export OS_ELASTICSEARCH_ADDRESS=localhost:9200
+$ export ELASTICSEARCH_ADDRESS=localhost:9200
 ```
+
+Install a few dependencies:
+```bash
+$ npm install -g os-types
+$ sudo apt-get install libleveldb-dev libleveldb1 libpq-dev python3-dev
+$ pip3 install tox coveralls datapackage-pipelines[speedup] datapackage-pipelines-fiscal psycopg2-binary
+
+# or for MacOS
+$ npm install -g os-types
+$ brew install leveldb
+$ pip3 install tox coveralls datapackage-pipelines[speedup] datapackage-pipelines-fiscal psycopg2-binary
+```
+
+Fill the local DB with a sample fiscal data:
+```
+$ cd tests/sample_data && dpp run --verbose --concurrency=8 all
+```
+
+Then run:
+```bash
 $ tox
 ```

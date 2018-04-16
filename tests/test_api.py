@@ -2,12 +2,12 @@ import zipfile
 import json
 import six
 import pytest
+import os
+import logging
 
-import babbage_fiscal
 from os_api import config
 
 
-@pytest.mark.usefixtures('load_sample_fdp_to_db')
 class TestAPI(object):
     def test_babbage_api_configured_success(self, client):
         res = client.get('/api/3/')
@@ -15,13 +15,13 @@ class TestAPI(object):
         assert res.json['status'] == 'ok'
         res = client.get('/api/3/cubes/')
         assert res.status_code == 200
-        assert '__testing:ukgov-finances-cra' \
+        assert '__testing:ukgov_finances_cra' \
             in [i['name'] for i in res.json['data']]
 
     def test_package_inspection_configured_success(self, client):
-        res = client.get('/api/3/info/__testing:ukgov-finances-cra/package')
+        res = client.get('/api/3/info/__testing:ukgov_finances_cra/package')
         assert res.status_code == 200
-        assert res.json['name'] == 'ukgov-finances-cra'
+        assert res.json['name'] == 'ukgov_finances_cra'
 
     def test_package_inspection_configured_notfound(self, client):
         res = client.get('/api/3/info/__testing:no-package-here/package')
@@ -33,7 +33,7 @@ class TestAPI(object):
         for path in responses.namelist():
             canned_response = json.loads(responses.read(path).decode('utf8'))
             path = path.replace('=ukgov-finances-cra',
-                                '=__testing:ukgov-finances-cra')
+                                '=__testing:ukgov_finances_cra')
             actual_response = client.get(path).json
             errors = compare_objects(canned_response, actual_response)
             if len(errors) > 0:
@@ -50,14 +50,6 @@ class TestAPI(object):
             actual_response = client.get(path).json
             errors = compare_objects(canned_response, actual_response)
             assert len(errors) > 0
-
-
-@pytest.fixture(scope='module')
-def load_sample_fdp_to_db(elasticsearch):
-    DATAPACKAGE_URL = "https://raw.githubusercontent.com/akariv/openspending-migrate/adam__test_datetime_dimension_change/examples/ukgov-finances-cra/datapackage.json"  # noqa
-
-    loader = babbage_fiscal.FDPLoader(engine=config.get_engine())
-    loader.load_fdp_to_db(DATAPACKAGE_URL)
 
 
 def compare_objects(o1, o2, prefix=''):

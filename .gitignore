@@ -109,3 +109,4 @@ ENV/
 celerydb.sqlite
 gunicorn.log
 tested-ok.txt
+.dpp
