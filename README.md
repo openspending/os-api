@@ -52,6 +52,11 @@ Install a few dependencies:
 $ npm install -g os-types
 $ sudo apt-get install libleveldb-dev libleveldb1 libpq-dev python3-dev
 $ pip3 install tox coveralls datapackage-pipelines[speedup] datapackage-pipelines-fiscal psycopg2-binary
+
+# or for MacOS
+$ npm install -g os-types
+$ brew install leveldb
+$ pip3 install tox coveralls datapackage-pipelines[speedup] datapackage-pipelines-fiscal psycopg2-binary
 ```
 
 Fill the local DB with a sample fiscal data:
