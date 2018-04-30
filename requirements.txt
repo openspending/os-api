@@ -20,7 +20,7 @@ elasticsearch==1.9.0
 et-xmlfile==1.0.1         # via openpyxl
 flask-cors==3.0.3
 flask-jsonpify==1.5.0
-flask==0.12.2             # via babbage, flask-cors, flask-jsonpify
+flask==0.12.2
 grako==3.10.1             # via babbage
 gunicorn==19.7.1
 idna==2.6                 # via requests

@@ -6,8 +6,9 @@ awesome-slugify
 regex
 datadog
 elasticsearch>=1,<2
-flask-cors
-flask-jsonpify
+flask>=0.12.0,<1.0.0
+flask-cors>=3.0.0,<4.0.0
+flask-jsonpify>=1.5.0,<2.0.0
 sqlalchemy
 six
 raven==6.0.0
