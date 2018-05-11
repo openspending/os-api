@@ -22,9 +22,6 @@ RUN pip install -r requirements.txt
 
 ADD . .
 
-COPY docker/startup.sh /startup.sh
-COPY docker/docker-entrypoint.sh /entrypoint.sh
-
 EXPOSE 8000
 
 ENTRYPOINT ["gunicorn"]
