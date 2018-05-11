@@ -27,5 +27,5 @@ COPY docker/docker-entrypoint.sh /entrypoint.sh
 
 EXPOSE 8000
 
-CMD ["/startup.sh"]
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["gunicorn"]
+CMD ["-t 120", "-w 4", "os_api.app:app", "-b 0.0.0.0:8000"]
