@@ -15,11 +15,11 @@ class TestAPI(object):
         assert res.json['status'] == 'ok'
         res = client.get('/api/3/cubes/')
         assert res.status_code == 200
-        assert '__testing:ukgov_finances_cra' \
+        assert '__testing:ukgov-finances-cra' \
             in [i['name'] for i in res.json['data']]
 
     def test_package_inspection_configured_success(self, client):
-        res = client.get('/api/3/info/__testing:ukgov_finances_cra/package')
+        res = client.get('/api/3/info/__testing:ukgov-finances-cra/package')
         assert res.status_code == 200
         assert res.json['name'] == 'ukgov_finances_cra'
 

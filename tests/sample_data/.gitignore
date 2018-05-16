@@ -3,4 +3,4 @@ denormalized/
 normalized/
 final/
 .cache/
-__testing:ukgov_finances_cra_final.zip
+*.zip
