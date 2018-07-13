@@ -20,9 +20,11 @@ WORKDIR /app
 ADD requirements.txt .
 RUN pip install -r requirements.txt
 
+COPY docker/entrypoint.sh /entrypoint.sh
+
 ADD . .
 
 EXPOSE 8000
 
-ENTRYPOINT ["gunicorn"]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["-t 120", "-w 4", "os_api.app:app", "-b 0.0.0.0:8000"]
