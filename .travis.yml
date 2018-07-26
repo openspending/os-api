@@ -36,16 +36,17 @@ before_install:
 install:
   # Will build local Dockerfile as part of ci-run (docker-compose up)
   - make ci-run
-  - pip install tox coveralls 'datapackage-pipelines[speedup]>=1.6.18,<1.7' datapackage-pipelines-fiscal==1.0.14 psycopg2-binary
+  - pip install tox coveralls 'datapackage-pipelines[speedup]>=1.7.1' datapackage-pipelines-fiscal==1.0.20 psycopg2-binary
 
 before_script:
   - sleep 30
   - curl localhost:9200
+  - cd tests/sample_data && ls && dpp && dpp run --verbose --concurrency=8 all
+  - cd ../../
 
 script:
   - make ci-test
-  - cd tests/sample_data && ls && dpp && dpp run --verbose --concurrency=8 all
-  - cd ../../ && tox
+  - tox
 
 after_success:
   - coveralls

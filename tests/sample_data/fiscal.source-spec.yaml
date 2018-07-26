@@ -4,9 +4,9 @@ title: UK Country Regional Analysis
 owner-id: __testing
 description: |
   The Country Regional Analysis published by HM Treasury (2010 version).
-  
+
   Source data can be found in the [CKAN data package](http://ckan.net/package/ukgov-finances-cra)
- 
+
 sources:
 -
   url: dataset.csv.gz
@@ -14,54 +14,54 @@ sources:
 
 fields:
   - header: cofog1_label
-    osType: functional-classification:generic:level1:label
+    columnType: functional-classification:generic:level1:label
   - header: cofog1_name
-    osType: functional-classification:generic:level1:code
+    columnType: functional-classification:generic:level1:code
   - header: cofog2_label
-    osType: functional-classification:generic:level2:label
+    columnType: functional-classification:generic:level2:label
   - header: cofog2_name
-    osType: functional-classification:generic:level2:code:full
+    columnType: functional-classification:generic:level2:code
   - header: cofog3_label
-    osType: functional-classification:generic:level3:label
+    columnType: functional-classification:generic:level3:label
   - header: cofog3_name
-    osType: functional-classification:generic:level3:code:full
+    columnType: functional-classification:generic:level3:code
   - header: hmt1_label
-    osType: administrative-classification:generic:level1:label
+    columnType: administrative-classification:generic:level1:label
   - header: hmt1_name
-    osType: administrative-classification:generic:level1:code
+    columnType: administrative-classification:generic:level1:code
   - header: hmt2_label
-    osType: administrative-classification:generic:level1:label
+    columnType: administrative-classification:generic:level1:label
   - header: hmt2_name
-    osType: administrative-classification:generic:level1:code
+    columnType: administrative-classification:generic:level1:code
   - header: cg_lg_or_pc_label
-    osType: value-kind:label
+    columnType: value-kind:label
   - header: cg_lg_or_pc_name
-    osType: value-kind:code
+    columnType: value-kind:code
   - header: pog_label
-    osType: activity:generic:program:label
+    columnType: activity:generic:program:label
   - header: pog_name
-    osType: activity:generic:program:code
+    columnType: activity:generic:program:code
   - header: to_label
-    osType: recipient:generic:name
+    columnType: recipient:generic:name
   - header: to_name
-    osType: recipient:generic:id
+    columnType: recipient:generic:id
   - header: from_gov_department
-    osType: administrative-classification:generic:level3:code:full
+    columnType: administrative-classification:generic:level3:code
   - header: cap_or_cur_label
-    osType: economic-classification:generic:level1:label
+    columnType: economic-classification:generic:level1:label
   - header: cap_or_cur_name
-    osType: economic-classification:generic:level1:code
+    columnType: economic-classification:generic:level1:code
   - header: region_label
-    osType: administrative-classification:generic:level4:label
+    columnType: administrative-classification:generic:level4:label
   - header: region_name
-    osType: administrative-classification:generic:level4:code:full
+    columnType: administrative-classification:generic:level4:code
   - header: from_label
-    osType: administrative-classification:generic:level5:label
+    columnType: administrative-classification:generic:level5:label
   - header: from_name
-    osType: administrative-classification:generic:level5:code:full
+    columnType: administrative-classification:generic:level5:code
   - header: amount
-    osType: value
+    columnType: value
   - header: time_year
-    osType: date:fiscal-year
+    columnType: date:fiscal-year
 
 deduplicate: true
