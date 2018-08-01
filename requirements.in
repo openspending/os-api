@@ -13,8 +13,8 @@ sqlalchemy
 six
 raven==6.0.0
 redis
-os-api-cache>=0.0.6
-os-package-registry>=0.0.15
+os-api-cache>=0.0.7
+os-package-registry>=0.0.16
 babbage>=0.3.5
 datapackage>=1.0.0,<2
 tableschema>=1.0.0,<2
