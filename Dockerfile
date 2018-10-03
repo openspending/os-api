@@ -20,6 +20,12 @@ WORKDIR /app
 ADD requirements.txt .
 RUN pip install -r requirements.txt
 
+# ADD repos/os-api-cache repos/os-api-cache
+# RUN pip install -e repos/os-api-cache
+
+ADD repos/os-package-registry repos/os-package-registry
+RUN pip install -e repos/os-package-registry
+
 COPY docker/entrypoint.sh /entrypoint.sh
 
 ADD . .
