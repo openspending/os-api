@@ -8,7 +8,7 @@ import time
 
 def get(path):
     print('<<< %s' % path)
-    return requests.get('https://staging.openspending.org' + path + '&_cb=%s' % time.time()).json()
+    return requests.get('https://legacy.openspending.org' + path + '&_cb=%s' % time.time(), verify=False).json()
 
 
 def compare_objects(o1,o2,prefix=''):
