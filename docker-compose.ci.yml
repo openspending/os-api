@@ -27,23 +27,23 @@ services:
     image: 'redis:3.2-alpine'
     expose:
       - 6379
-    ports:
-      - "6379:6379"
+    # ports:
+    #   - "6379:6379"
 
   db:
     image: 'postgres:10-alpine'
     expose:
       - 5432
-    ports:
-      - "5432:5432"
+    # ports:
+    #   - "5432:5432"
 
   es:
     image: bitnami/elasticsearch:5.6.4
     expose:
       - 9200
       - 9300
-    ports:
-      - "9200:9200"
+    # ports:
+    #   - "9200:9200"
 
   mq:
     image: 'rabbitmq:3.6.3-management'
