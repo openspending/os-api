@@ -36,8 +36,7 @@ A development server can be started with:
 
 ## Testing
 
-You need a few services running, namely elasticsearch v1.5 running on localhost:9200 and PostgreSQL
-
+You need a few services running, namely elasticsearch v5.x running on localhost:9200 and PostgreSQL
 
 Then set a few environment variables (your DB connection string might vary):
 ```bash

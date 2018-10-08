@@ -5,7 +5,7 @@ __version__ = '0.0.1'
 setup(
     name='os_api',
     version=__version__,
-    description='API for OpenSpending Next',
+    description='API for OpenSpending',
     long_description='',
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -17,7 +17,7 @@ setup(
     keywords='api fiscal datapackage babbage openspending next',
     author='OpenSpending',
     author_email='info@openspending.org',
-    url='https://github.com/openspending/babbage.fiscal-data-package',
+    url='https://github.com/openspending/os-api',
     license='MIT',
     packages=find_packages(exclude=['ez_setup', 'examples', 'test']),
     namespace_packages=[],
