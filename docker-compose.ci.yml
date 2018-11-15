@@ -9,12 +9,10 @@ services:
       OS_API_ENGINE: postgresql://postgres@db/postgres
       OS_ELASTICSEARCH_ADDRESS: es:9200
       OS_MQ_ADDRESS: mq
-
       OS_API_CACHE: redis
       OS_API_CACHE_TIMEOUT: 86400
       CELERY_CONFIG: amqp://guest:guest@mq:5672//
       CELERY_BACKEND_CONFIG: amqp://guest:guest@mq:5672//
-
       OS_CHECK_ES_HEALTHY: 'True'
     restart: always
     depends_on:
