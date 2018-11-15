@@ -11,10 +11,9 @@ from raven.contrib.flask import Sentry
 from babbage.api import configure_api as configure_babbage_api
 from os_package_registry import PackageRegistry
 
-from .config import get_engine, _connection_string
+from .config import get_engine
 
 from .cube_manager import OSCubeManager
-from .backward import configure_backward_api
 from .info_api import infoAPI
 
 from .cache import setup_caching
@@ -45,12 +44,14 @@ def create_app():
     _app = Flask('os_api')
     _app.wsgi_app = ProxyFix(_app.wsgi_app)
 
-    registry = PackageRegistry(es_connection_string=os.environ.get('OS_ELASTICSEARCH_ADDRESS','localhost:9200'))
+    registry = PackageRegistry(
+        es_connection_string=os.environ.get('OS_ELASTICSEARCH_ADDRESS',
+                                            'localhost:9200'))
     manager = OSCubeManager(get_engine(), registry)
 
     logging.info('OS-API configuring query blueprints')
-    _app.register_blueprint(configure_babbage_api(_app, manager), url_prefix='/api/3')
-    _app.register_blueprint(configure_backward_api(_app, manager), url_prefix='/api/2')
+    _app.register_blueprint(configure_babbage_api(_app, manager),
+                            url_prefix='/api/3')
     _app.register_blueprint(infoAPI, url_prefix='/api/3')
 
     _app.extensions['model_registry'] = registry
