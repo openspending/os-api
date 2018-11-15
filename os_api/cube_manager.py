@@ -1,5 +1,6 @@
 from babbage import CubeManager
 
+
 class OSCubeManager(CubeManager):
 
     def __init__(self, engine, registry):
