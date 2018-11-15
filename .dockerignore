@@ -4,3 +4,11 @@
 .cache
 .pytest_cache
 *.egg-info/
+repos/
+
+tests/sample_data/.dpp
+tests/sample_data/.cache
+tests/sample_data/denormalized/
+tests/sample_data/normalized/
+tests/sample_data/final/
+tests/sample_data/*.zip
