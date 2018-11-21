@@ -1,5 +1,3 @@
-dist: trusty
-
 language:
   python
 
@@ -9,7 +7,7 @@ python:
 services:
   - docker
 
-sudo: required
+# sudo: required
 
 addons:
     postgresql: "9.4"
@@ -27,7 +25,8 @@ env:
 
 before_install:
   - sudo rm -f /etc/boto.cfg
-  - curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.11.deb && sudo dpkg -i --force-confnew elasticsearch-5.6.11.deb && sudo service elasticsearch restart
+  # - curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.11.deb && sudo dpkg -i --force-confnew elasticsearch-5.6.11.deb && sudo service elasticsearch restart
+  - docker run -d -p 9200:9200 bitnami/elasticsearch:5.6.4
   - nvm install 8
   - nvm use 8
   - npm install -g os-types
@@ -35,17 +34,17 @@ before_install:
 
 install:
   # Will build local Dockerfile as part of ci-run (docker-compose up)
-  - make ci-run
-  - pip install tox coveralls 'cachetools>=2,<3' 'datapackage-pipelines[speedup]>=1.7.1,<2.0.0' datapackage-pipelines-fiscal==1.1.0 psycopg2-binary
+  # - make ci-run
+  - pip install tox coveralls 'datapackage-pipelines[speedup]>=2.0.0,<3' 'datapackage-pipelines-fiscal>=1.2.0' psycopg2-binary
 
 before_script:
-  - sleep 30
   - curl localhost:9200
-  - cd tests/sample_data && ls && dpp && dpp run --verbose --concurrency=8 all
+  - cd tests/sample_data && ls -la && dpp
+  - dpp run --verbose --concurrency=8 all
   - cd ../../
 
 script:
-  - make ci-test
+  # - make ci-test
   - tox
 
 after_success:
