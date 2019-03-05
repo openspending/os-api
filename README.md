@@ -26,7 +26,7 @@ OS_API_CACHE=redis
 OS_CHECK_ES_HEALTHY='True'
 ```
 
-With the backing servies available, a development server can be started with:
+With the backing services available, a development server can be started with:
 `python dev_server.py`
 
 ## Testing
