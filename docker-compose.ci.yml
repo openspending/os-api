@@ -8,17 +8,13 @@ services:
     environment:
       OS_API_ENGINE: postgresql://postgres@db/postgres
       OS_ELASTICSEARCH_ADDRESS: es:9200
-      OS_MQ_ADDRESS: mq
       OS_API_CACHE: redis
       OS_API_CACHE_TIMEOUT: 86400
-      CELERY_CONFIG: amqp://guest:guest@mq:5672//
-      CELERY_BACKEND_CONFIG: amqp://guest:guest@mq:5672//
       OS_CHECK_ES_HEALTHY: 'True'
     restart: always
     depends_on:
       - db
       - es
-      - mq
       - redis
 
   redis:
@@ -42,9 +38,3 @@ services:
       - 9300
     # ports:
     #   - "9200:9200"
-
-  mq:
-    image: 'rabbitmq:3.6.3-management'
-    expose:
-      - 5672
-      - 15672

@@ -1,4 +1,4 @@
-# OpenSpending-Next API
+# OpenSpending API
 
 [![Gitter](https://img.shields.io/gitter/room/openspending/chat.svg)](https://gitter.im/openspending/chat)
 [![Build Status](https://travis-ci.org/openspending/os-api.svg?branch=master)](https://travis-ci.org/openspending/os-api)
@@ -17,13 +17,8 @@ For development, create a `.env` file and add environmental variables:
 ```ini
 # Address for the postgres instance, e.g. postgresql://postgres@db/postgres
 OS_API_ENGINE=postgresql://postgres@db/postgres
-# Address of RabbitMQ instance
-OS_MQ_ADDRESS=mq
 # Address of elasticsearch server
 OS_ELASTICSEARCH_ADDRESS=localhost:9200
-# Address of RabbitMQ
-CELERY_CONFIG=amqp://guest:guest@localhost:5672//
-CELERY_BACKEND_CONFIG=amqp://guest:guest@localhost:5672//
 # Address of Redis instance
 OS_API_CACHE=redis
 
@@ -31,12 +26,12 @@ OS_API_CACHE=redis
 OS_CHECK_ES_HEALTHY='True'
 ```
 
-A development server can be started with:
+With the backing servies available, a development server can be started with:
 `python dev_server.py`
 
 ## Testing
 
-You need a few services running, namely elasticsearch v5.x running on localhost:9200 and PostgreSQL
+You need a few services running, namely Elasticsearch v5.x running on localhost:9200 and PostgreSQL.
 
 Then set a few environment variables (your DB connection string might vary):
 ```bash
