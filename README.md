@@ -8,6 +8,8 @@
 
 An API to explore the OpenSpending database.
 
+- [Flask](http://flask.pocoo.org/)
+
 ## Quick start
 
 Clone the repo, install dependencies from pypi, and run the server. See the [docs](http://docs.openspending.org/en/latest/developers/api/) for more information.
