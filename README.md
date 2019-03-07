@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/openspending/os-api.svg?branch=master)](https://travis-ci.org/openspending/os-api)
 [![Coverage Status](https://coveralls.io/repos/openspending/os-api/badge.svg?branch=master&service=github)](https://coveralls.io/github/openspending/os-api?branch=master)
 [![Issues](https://img.shields.io/badge/issue-tracker-orange.svg)](https://github.com/openspending/openspending/issues)
+[![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](http://docs.openspending.org/)
 
 An API to explore the OpenSpending database.
 
