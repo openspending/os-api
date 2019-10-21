@@ -58,5 +58,5 @@ tabulator==1.14.0
 unicodecsv==0.14.1        # via datapackage, tableschema, tabulator
 unidecode==0.4.21         # via awesome-slugify
 urllib3==1.22             # via elasticsearch, requests
-werkzeug==0.12.2          # via flask
+werkzeug==0.15.3          # via flask
 xlrd==1.1.0               # via tabulator
