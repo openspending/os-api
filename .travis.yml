@@ -1,59 +1,41 @@
-language:
-  python
-
+language: python
 python:
-  - 3.6
-
+- 3.6
 services:
-  - docker
-
-# sudo: required
-
+- docker
 addons:
-    postgresql: "9.4"
-
+  postgresql: '9.4'
 env:
-    global:
-        - OS_API_ENGINE=postgresql://postgres@/postgres
-        - DPP_DB_ENGINE=postgresql://postgres@/postgres
-        - OS_ELASTICSEARCH_ADDRESS=localhost:9200
-        - ELASTICSEARCH_ADDRESS=localhost:9200
-        # DOCKER_USERNAME
-        - secure: stuHESFXIArG1T1u4ddSwOsrNMjQ9TSAw/UYdWqs5rdkkBz+tYA2S0f8fqpE7kLffwcsnie0lWAuF5HpGWsb42ZAgDnY8ENJBds+65378uT7CepsM+A4GkLdSYGQTgrhTgAmbLJtBIt4vzELisW2V/G2rSlrfS1OjQZKaDeoqXQLOslCE/05oKFvyYw1YN4fpPFqjJVeBNBqXmVYSjBz7CrinUcxQfqUhMqGfgF7VgjTO4Jt+vKU4ym3nKgqyRufYWbgmbEoevi/3JAHuWx73kCv7MVnQQaBdyXdPLQLLqmR/PSxkUsAfH+rUWdam+mF3txB9si+Pw17LUaV+hnVJ+N8zpOTIkxN1bDHilWWdrw52lM5n/7//uBABAa2DZO2+8F2o7oh1sH5anKCRv48dvpboRsqoG+ymnGsDv01QlgcWcZ8hcj8KOC6kmbnjNK9hCk+WywWKo2LSs8+FfD/fTfBeUPKB1lPLFn64DzpOLGzbAUhvQ7bsP+Py1awf6ClcHgSXvWdJQTEuOGr8eJ7zPXE4BC2+tWXEDM+0rOiF2saGqXzQqS5BGmtvtk+U7ujquFSfYm038PLl7uYU+pdBRSI3p5rC1aAWYaPayyGUnnZwK3rMta/ih/GVM6LZtdkXn1wVHitjrDRVTdVF/jwZN7vzltjmormMMPAKWIHK9Q=
-        # DOCKER_PASSWORD
-        - secure: eJo9+lYTblyEztl5zZ7+x3JJBNvC96dxHFYiR4JZR3mGjvXnw6q//t821LB6bA9jmnlE15PjU1iOrn/eZuiu+uizEc60VdSZOq9y1CAFVR27ck8VXLAFNpLCpe39Ybu3zhYV5SpH2GoHaNhBvoxxWHXD7xhZ6AgtX6xHPzmwyfB7kzpXvuhZK/gAO3nYiWDacNyfDIcRKMceHLgK698p+eau6iUnL28D4gQPadyHXN8jFVG61oT//S1OedBZUROrJOTOXeJqC4Zp3uDwGnfGsLPQZkwDxfJQBgqxCsohf2hj09itJQoPSzpm3/rMrswciYqkJqIGElO8QT42qjlRSv6Qzwu/jlbCgaS5tgS236lXxT2qGwI762f+WfSDqOkXRBI+lKMb66XJlrjAdtAdcSIlb7w16teIqqhyHHrY9aMnsvAnY7mK7QlPYtO0HueRC6C58cc6feoz6pyleWYky0lxfmsHtZp+dmOyAIWo7W+ctUvOr108cCLsoP4MNmH/RMpx8EFpthgpiTNqvd3RCzQitK/nPdoiJcDmfLshCNs9Zi2iZ909TbsaSriKBBB4l/m0Z8BqVKLlN7jjESHkttKpxIp6MYh3Kw9WIOUAvxVSvaPe/z6fzrIYMXqHinxpc9yQn4FcegLUFtsUvPIlEHgknpBwJFZEdAc31YKzMR8=
-
+  global:
+  - OS_API_ENGINE=postgresql://postgres@/postgres
+  - DPP_DB_ENGINE=postgresql://postgres@/postgres
+  - OS_ELASTICSEARCH_ADDRESS=localhost:9200
+  - ELASTICSEARCH_ADDRESS=localhost:9200
+  - secure: c9VAIqVjR7ZR9dzicsOFtTB+FjCxMmSm+IRPjHmj6Mci5ED+6VAYbo1xxwqqypjfxI3o+nwifdG/Y06R3E5YmagFH3BRFOrff7/l4YfnnJz8zOE8jV5Ma56BgMSC/QMEMTBcYP+wapu60JpgKwJNQnCJbsHRR3oa6/ReS4qw0yg9nSU2XaoMk6OMSsFJtSBUPehnrRQohwv3sTUAGH1UEeH6/yPT847n1dYBLtD9y38eXFj+WPZ33+5y7fYorTHcS6yHPEElTMjMqcZGmxppIcR78JBsgQRs3+yyY6AgIQJy2khgEtltl4M0wfZzTZu3TNxaT/N++foYKcqBNVAxkILHpI0L3G0S176itQjY5IuyqR4BpJ/BCPMacLrmXjqMIETSAxaBXbFXL/8s6ceE1SE7mFPjtjY0/vPEFgJbX1dvwSNTfq2jM3T0pcWPFYeAQRkTKyxUdX9O+9KhmMO+5TTJncB0CHxX9V9yado3gmhFhlIBsqjmdQq+nSXJKh+VgPfh7W2qiuPAvAb/pUsqGMatN0mVGRybHMuRTtsJpuo0wJoAcdmcB0/ClCtoPrcM0sTqZKye59Qwvq8U5RbR2vaWcXBXjR6r4SxkSOGvqCcNaq/Heq5+qk+Vt+v/aHlfs4RbVi+CYbKvpfPSn27e01hEvO7LsaKxCx3tXvHJ0/g=
+  - secure: s31RgqzHifoPOzf7SMS3xlrHHyeX90fWVZPLJfGg7ivunAJ+AE8kbSNabZUPR0yphZZHfLQPZtHHv3DThraz29vx1tZk1y2hS7tr1NdA7MqMgwD26mmBgOqTMXdMJMiRUTKg7Y3cQq84GNH4Mif1q6nvtfo4Fu1lNHwrBHwNl5WBr12RK68BHoqwXbh+zzauSn/TLCdji2Q6ijfGkaoOOQOadsIYv/yxBbhL4GKSQC0P3gvMl5JR1vquaL23EAwUI93Sc284m7pgZCCku5UKVEPsFu3Aoq9t81WEazzsYOWFreHmRgDDzPcxW5o6vtRQ/8kSCgTWMWHMLYtcgftIlHhclsR+btqA3TIizkZVjlfHtVAyJ9gc02ac3b/F9Ry/YHBWqkdXla5nMZyPLwMUtRWIRCWWiwbY6jelcu6AwFqOi1ORn85zZv27XJqQAnDm2X9QhdTz2KIdzDW653TUUH8kkMm+xHdWqsCxwnyFrTuwXuLokVspR3JXJYuDU+MsfzuQOvOpx25nm34EdELzkakSRoit1iqYSg5ljs+T1qNP1owZS99VwksC3KEyHxus3xpDT5M5JhcAUHp1TUafcdW7ED7M2kfUtf0Hs9S11Y4MzySYHcfiGJpPBa8tIxZVmnPh+HAdZywij2b64uijWkRGw/Kw8J+MiKqqNrlrkqo=
 before_install:
-  - sudo rm -f /etc/boto.cfg
-  # - curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.11.deb && sudo dpkg -i --force-confnew elasticsearch-5.6.11.deb && sudo service elasticsearch restart
-  - docker run -d -p 9200:9200 bitnami/elasticsearch:5.6.4
-  - nvm install 8
-  - nvm use 8
-  - npm install -g os-types
-  - sudo apt-get install libleveldb-dev libleveldb1v5 libpq-dev python3-dev
-
+- sudo rm -f /etc/boto.cfg
+- docker run -d -p 9200:9200 bitnami/elasticsearch:5.6.4
+- nvm install 8
+- nvm use 8
+- npm install -g os-types
+- sudo apt-get install libleveldb-dev libleveldb1v5 libpq-dev python3-dev
 install:
-  # Will build local Dockerfile as part of ci-run (docker-compose up)
-  # - make ci-run
-  - pip install tox coveralls 'datapackage-pipelines[speedup]>=2.0.0,<3' 'datapackage-pipelines-fiscal>=1.2.0' psycopg2-binary
-
+- pip install tox coveralls 'datapackage-pipelines[speedup]>=2.0.0,<3' 'datapackage-pipelines-fiscal>=1.2.0'
+  psycopg2-binary
 before_script:
-  - curl localhost:9200
-  - cd tests/sample_data && ls -la && dpp
-  - dpp run --verbose --concurrency=8 all
-  - cd ../../
-
+- curl localhost:9200
+- cd tests/sample_data && ls -la && dpp
+- dpp run --verbose --concurrency=8 all
+- cd ../../
 script:
-  # - make ci-test
-  - tox
-
+- tox
 after_success:
-  - coveralls
-  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then make ci-push-tag TAG="${TRAVIS_PULL_REQUEST_BRANCH////_}"; fi'
-
+- coveralls
+- if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then make ci-push-tag TAG="${TRAVIS_PULL_REQUEST_BRANCH////_}";
+  fi
 deploy:
-  # deploy master to latest tag
-  - provider: script
-    script: make ci-push
-    on:
-      branch: master
+- provider: script
+  script: make ci-push
+  on:
+    branch: master
