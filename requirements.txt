@@ -43,7 +43,7 @@ pybloom-live==2.3.1       # via tableschema-sql
 python-dateutil==2.6.1    # via tableschema
 python-dotenv==0.7.1
 python-memcached==1.58
-pyyaml==3.12              # via babbage
+pyyaml==5.1               # via babbage
 raven==6.0.0
 redis==2.10.6
 regex==2017.9.23
