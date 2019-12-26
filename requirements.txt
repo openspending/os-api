@@ -47,7 +47,7 @@ pyyaml==3.12              # via babbage
 raven==6.0.0
 redis==2.10.6
 regex==2017.9.23
-requests==2.18.4          # via datadog, datapackage, tableschema, tabulator
+requests==2.20.0          # via datadog, datapackage, tableschema, tabulator
 rfc3986==1.1.0            # via tableschema
 simplejson==3.11.1        # via datadog
 six==1.11.0
